@@ -1,0 +1,127 @@
+\chapter*{❋1. Primitive Ideas and Propositions.} %\addcontentsline{toc}{section}{❋1. Primitive Ideas and Propositions.} 
+\pageFsp{95}{91} Since all definitions of terms are effected by means of other terms, every system of definitions which is not circular must start from a certain apparatus of undefined terms. It is to some extent optional what ideas we take as undefined in mathematics; the motives guiding our choice will be (1) to make the number of undefined ideas as small as possible, (2) as between two systems in which the number is equal, to choose the one which seems the simpler and easier. We know no way of proving that such and such a system of undefined ideas contains as few as will give such and such results\footnote{The recognized methods of proving independence are not applicable, without reserve, to fundamentals. Cf. \textit{Principles of Mathematics}, \S17. What is there said concerning primitive propositions applies with even greater force to primitive ideas.}. Hence we can only say that such and such ideas are undefined in such and such a system, not that they are indefinable. Following Peano\index{Peano, Giuseppe}, we shall call the undefined ideas and the undemonstrated propositions \textit{primitive} ideas and \textit{primitive} propositions respectively. The primitive ideas are \textit{explained} by means of descriptions intended to point out to the reader what is meant; but the explanations do not constitute definitions, because they really involve the ideas they explain.
+
+In the present number, we shall first enumerate the primitive ideas required in this section; then we shall define \textit{implication}; and then we shall enunciate the primitive propositions required in this section. Every definition or proposition in the work has a number, for purposes of reference. Following Peano\index{Peano, Giuseppe}, we use numbers having a decimal as well as an integral part, in order to be able to insert new propositions between any two. A change in the integral part of the number will be used to correspond to a new chapter. Definitions will generally have numbers whose decimal part is less than \(\pmcdot1\), and will be usually put at the beginning of chapters. In references, the integral parts of the numbers of propositions will be distinguished by being preceded by a star; thus ``$\pmast1\pmcdot01$'' will mean the definition or proposition so numbered, and ``$\pmast1$'' will mean the chapter in which propositions have numbers whose integral part is 1, \textit{i.e.}\ the present chapter. Chapters will generally be called ``numbers.''
+\subsection*{\centering PRIMITIVE IDEAS.} 
+(1) \textit{Elementary propositions}. By an ``elementary'' proposition we mean one which does not involve any variables, or, in other language, one which does not involve such words as ``all,'' ``some,'' ``the'' or equivalents for such words. A proposition such as ``this is red,'' where ``this'' is something given \pagef{96} in sensation, will be elementary. Any combination of given elementary propositions by means of negation, disjunction or conjunction (see below) will \pagesp{92} be elementary. In the primitive propositions of the present number, and therefore in the deductions from these primitive propositions in $\pmast2-\pmast5$, the letters $p, q, r, s$ will be used to denote elementary propositions.
+
+(2) \textit{Elementary propositional functions}. By an ``elementary propositional function'' we shall mean an expression containing an undetermined constituent, \textit{i.e.}\ a variable, or several such constituents, and such that, when the undetermined constituent or constituents are determined, \textit{i.e.}\ when values are assigned to the variable or variables, the resulting value of the expression in question is an elementary proposition. Thus if $p$ is an undetermined elementary proposition, ``not-$p$'' is an elementary propositional function.
+
+We shall show in $\pmast9$ how to extend the results of this and the following numbers ($\pmast1-\pmast5$) to propositions which are not elementary.
+
+(3) \textit{Assertion}. Any proposition may be either asserted or merely considered. If I say ``Caesar\index{Caesar, Gaius Julius} died,'' I assert the proposition ``Caesar\index{Caesar, Gaius Julius} died,'' if I say ```Caesar\index{Caesar, Gaius Julius} died' is a proposition,'' I make a different assertion, and ``Caesar\index{Caesar, Gaius Julius} died'' is no longer asserted, but merely considered. Similarly in a hypothetical proposition, \textit{e.g.}\ ``if $a \pmid b$, then $b \pmid a$,'' we have two unasserted propositions, namely ``$a \pmid b$'' and ``$b \pmid a$,'' while what \textit{is} asserted is that the first of these implies the second. In language, we indicate when a proposition is merely considered by ``if so-and-so'' or ``that so-and-so'' or merely by inverted commas. In symbols, if $p$ is a proposition, $p$ by itself will stand for the unasserted proposition, while the asserted proposition will be designated by
+\[
+\text{``}\pmthm\pmdot p\text{.''}
+\]
+The sign ``$\pmthm$'' is called the assertion-sign\footnote{We have adopted both the idea and the symbol of assertion from Frege\index{Frege, Gottlob}.}; it may be read ``it is true that'' (although philosophically this is not exactly what it means). The dots after the assertion-sign indicate its range; that is to say, everything following is asserted until we reach either an equal number of dots preceding a sign of implication or the end of the sentence. Thus ``$\pmthm \pmdott p \pmdot \pmimp \pmdot q$'' means ``it is true that $p$ implies $q$,'' whereas ``$\pmthm \pmdot p \pmdot \pmithm \pmdot q$'' means ``$p$ is true; therefore $q$ is true\footnote{Cf. \textit{Principles of Mathematics}, \S38}.'' The first of these does not necessarily involve the truth either of $p$ or of $q$, while the second involves the truth of both.
+
+(4) \textit{Assertion of a propositional function}. Besides the assertion of definite propositions, we need what we shall call ``assertion of a propositional function.'' The general notion of asserting \textit{any} propositional function is not used until $\pmast9$, but we use at once the notion of asserting various special \textit{elementary} propositional functions. Let $\phi x$ be a propositional function whose argument is $x$; then we may assert $\phi x$ without assigning a value to $x$. \pagef{97} This is done, for example, when the law of identity is asserted in the form ``$A$ is $A$.'' Here $A$ is left undetermined, because, however $A$ may be \pagesp{93} determined, the result will be true. Thus when we assert $\phi x$, leaving $x$ undetermined, we are asserting an ambiguous value of our function. This is only legitimate if, however the ambiguity may be determined, the result will be true. Thus take, as an illustration, the primitive proposition $\pmast1\pmcdot2$ below, namely
+\[
+\text{``} \pmthm \pmdott p \pmor p \pmdot \pmimp \pmdot p\text{,''}
+\]
+\textit{i.e.}\ ```$p$ or $p$' implies $p$.'' Here $p$ may be \textit{any} elementary proposition: by leaving $p$ undetermined, we obtain an assertion which can be applied to any particular elementary proposition. Such assertions are like the particular enunciations in Euclid: when it is said ``let $ABC$ be an isosceles triangle; then the angles at the base will be equal,'' what is said applies to \textit{any} isosceles triangle; it is stated concerning \textit{one} triangle, but not concerning a definite one. All the assertions in the present work, with a very few exceptions, assert propositional functions, not definite propositions.
+
+As a matter of fact, no constant elementary proposition will occur in the present work, or can occur in any work which employs only logical ideas. The ideas and propositions of logic are all \textit{general}: an assertion (for example) which is true of Socrates\index{Socrates} but not of Plato\index{Plato}, will not belong to logic\footnote{When we say that a proposition ``belongs to logic,'' we mean that it can be expressed in terms of the primitive ideas of logic. We do not mean that logic \textit{applies} to it, for that would of course be true of any proposition.}, and if an assertion which is true of both is to occur in logic, it must not be made concerning either, but concerning a variable $x$. In order to obtain, in logic, a definite proposition instead of a propositional function, it is necessary to take some propositional function and assert that it is true always or sometimes, \textit{i.e.}\ with all possible values of the variable or with some possible value. Thus, giving the name ``individual'' to whatever there is that is neither a proposition nor a function, the proposition ``every individual is identical with itself'' or the proposition ``there are individuals'' will be a proposition belonging to logic. But these propositions are not elementary.
+
+(5) \textit{Negation}. If $p$ is any proposition, the proposition ``not-$p$,'' or ``$p$ is false,'' will be represented by ``$\pmnot p$.'' For the present, $p$ must be an \textit{elementary} proposition.
+
+(6) \textit{Disjunction}. If $p$ and $q$ are any propositions, the proposition ``$p$ or $q$,'' \textit{i.e.}\ ``either $p$ is true or $q$ is true,'' where the alternatives are to be not mutually exclusive, will be represented by
+\[
+\text{``}p \pmor q\text{.''}
+\]
+This is called the \textit{disjunction} or the \textit{logical sum} of $p$ and $q$. Thus ``$\pmnot p \pmor q$'' will mean ``$p$ is false or $q$ is true''; $\pmnot(p \pmor q)$ will mean ``it is false that either $p$ or $q$ is true,'' which is equivalent to ``$p$ and $q$ are both false''; \pagef{98} $\pmnot(\pmnot p \pmor \pmnot q)$ will mean ``it is false that either $p$ is false or $q$ is false,'' which is equivalent to ``$p$ and $q$ are both true''; and so on. For the present, $p$ and $q$ must be elementary propositions.
+
+\pagesp{94} The above are all the primitive ideas required in the theory of deduction. Other primitive ideas will be introduced in Section B.
+
+\textit{Definition of Implication}. When a proposition $q$ follows from a proposition $p$, so that if $p$ is true, $q$ must also be true, we say that $p$ \textit{implies} $q$. The idea of implication, in the form in which we require it, can be defined. The meaning to be given to implication in what follows may at first sight appear somewhat artificial; but although there are other legitimate meanings, the one here adopted is very much more convenient for our purposes than any of its rivals. The essential property that we require of implication is this: ``What is implied by a true proposition is true.'' It is in virtue of this property that implication yields proofs. But this property by no means determines whether anything, and if so what, is implied by a false proposition. What it does determine is that, if $p$ implies $q$, then it cannot be the case that $p$ is true and $q$ is false, \textit{i.e.}\ it must be the case that either $p$ is false or $q$ is true. The most convenient interpretation of implication is to say, conversely, that if either $p$ is false or $q$ is true, then ``$p$ implies $q$'' is to be true. Hence ``$p$ implies $q$'' is to be defined to mean: ``Either $p$ is false or $q$ is true.'' Hence we put:
+\begin{flushleft}
+	\(\boldsymbol{\pmast1\pmcdot01}.\:\:\: p \pmimp q \pmdot \pmiddf \pmdot \pmnot p \pmor q \pmdf.\)
+\end{flushleft}
+
+Here the letters ``Df'' stand for ``definition.'' They and the sign of equality together are to be regarded as forming one symbol, standing for ``is defined to mean\footnote{The sign of equality not followed by the letters ``Df'' will have a different meaning, to be defined later.}.'' Whatever comes to the left of the sign of equality is defined to mean the same as what comes to the right of it. Definition is not among the primitive ideas, because definitions are concerned solely with the symbolism, not with what is symbolised; they are introduced for practical convenience, and are theoretically unnecessary.
+
+In virtue of the above definition, when ``$p \pmimp q$'' holds, then either $p$ is false or $q$ is true; hence if $p$ is true, $q$ must be true. Thus the above definition preserves the essential characteristic of implication; it gives, in fact, the most general meaning compatible with the preservation of this characteristic.
+
+\subsection*{\centering PRIMITIVE PROPOSITIONS.}
+\begin{flushleft}
+	\(\pmsnb{1}{1}\). Anything implied by a true elementary proposition is true. $\pmpp$\footnote{The letters ``$\pmpp$'' stand for ``primitive proposition.''}.
+\end{flushleft}
+
+\pagesp{95} The above principle will be extended in $\pmast9$ to propositions which are not elementary. It is not the same as ``\textit{if} $p$ is true, then \textit{if} $p$ implies $q$, $q$ is \pagef{99} true.'' This is a true proposition, but it holds equally when $p$ is not true and when $p$ does not imply $q$. It does not, like the principle we are concerned with, enable us to assert $q$ simply, without any hypothesis. We cannot express the principle symbolically, partly because any symbolism in which $p$ is variable only gives the \textit{hypothesis} that $p$ is true, not the fact that it is true\footnote{For further remarks on this principle, cf. \textit{Principles of Mathematics}, \S38}.
+
+The above principle is used whenever we have to deduce a \textit{proposition} from a \textit{proposition}. But the immense majority of the assertions in the present work are assertions of propositional functions, \textit{i.e.}\ they contain an undetermined variable. Since the assertion of a propositional function is a different primitive idea from the assertion of a proposition, we require a primitive proposition different from $\pmast1\pmcdot1$, though allied to it, to enable us to deduce the assertion of a propositional function ``$\psi x$'' from the assertions of the two propositional functions ``$\phi x$ and ``$\phi x \pmimp \psi x$.'' This primitive proposition is as follows:
+\begin{flushleft}
+	\(\pmsnb{1}{11}\). When $\phi x$ can be asserted, where $x$ is a real variable, and $\phi x \pmimp \psi x$ can be asserted, where $x$ is a real variable, then $\psi x$ can be asserted, where $x$ is a real variable. $\pmpp$.
+\end{flushleft}
+
+This principle is also to be assumed for functions of several variables.
+
+Part of the importance of the above primitive proposition is due to the fact that it expresses in the symbolism a result following from the theory of types, which requires symbolic recognition. Suppose we have the two assertions of \textit{propositional functions} ``$\pmthm \pmdot \phi x$'' and ``$\pmthm \pmdot \phi x \pmimp \psi x$''; then the ``$x$'' in $\phi x$ is not absolutely anything, but anything for which as argument the function ``$\phi x$'' is significant; similarly in ``$\phi x \pmimp \psi x$'' the $x$ is anything for which ``$\phi x \pmimp \psi x$'' is significant. Apart from some axiom, we do not know that the $x$'s for which ``$\phi x \pmimp \psi x$'' is significant are the same as those for which ``$\phi x$'' is significant. The \pagef{100} primitive proposition $\pmast1\pmcdot11$, by securing that, as the result of the assertions of the \textit{propositional functions} ``$\phi x$'' and ``$\phi x \pmimp \psi x$,'' the propositional function ``$\psi x$ can also be asserted, secures partial symbolic recognition, in the form most useful in actual deductions, of an important principle which follows from the theory of types, namely that, if there is any one argument $a$ for which both ``$\phi a$'' and ``$\psi a$'' are significant, then the range of arguments for which ``$\phi x$'' is significant is the same as the range of arguments for which ``$\psi x$'' is significant. It is obvious that, if the propositional function ``$\phi x \pmimp \psi x$'' can be asserted, there must be arguments $a$ for which ``$\phi a \pmimp \psi a$'' is significant, and for which, therefore, ``$\phi a$'' and ''``$\psi a$'' must be significant. Hence, by our principle, the values of $x$ for which ``$\phi x$'' is significant are the same as those for which ``$\psi x$'' is significant, \textit{i.e.}\ the type of possible arguments for $\pmpf{\phi}{\pmhat{x}}$ (cf.\ p.\ 15) is the same as that of possible arguments for $\pmpf{\psi}{\pmhat{x}}$. The primitive proposition $\pmast1\pmcdot11$, since it states a practically important consequence of this fact, is called the ``axiom of identification of type.''
+
+Another consequence of the principle that, if there is an argument $a$ for which both $\phi a$ and $\psi a$ are significant, then $\phi x$ is significant whenever $\psi x$ is significant, and vice versa, will be given in the ``axiom of identification of real variables,'' introduced in $\pmast1\pmcdot72$. These two propositions, $\pmast1\pmcdot11$ and $\pmast1\pmcdot72$, give what is symbolically essential to the conduct of demonstrations in accordance with the theory of types.
+
+\pagesp{96} The above proposition $\pmast1\pmcdot11$ is used in every inference from one asserted propositional function to another. We will illustrate the use of this proposition by setting forth at length the way in which it is first used, in the proof of $\pmast2\pmcdot06$. That proposition is
+\[
+\text{``}\pmthm \pmdottt p \pmimp q \pmdot \pmimp \pmdott q \pmimp r \pmdot \pmimp \pmdot p \pmimp r\text{.''}
+\]
+We have already proved, in $\pmast2\pmcdot05$, the proposition
+\[
+\pmthm \pmdottt q \pmimp r \pmdot \pmimp \pmdott p \pmimp q \pmdot \pmimp \pmdot p \pmimp r\text{.}
+\]
+It is obvious that $\pmast2\pmcdot06$ results from $\pmast2\pmcdot05$ by means of $\pmast2\pmcdot04$, which is
+\[
+\pmthm \pmdottt p \pmdot \pmimp \pmdot q \pmimp r \pmdott \pmimp \pmdott q \pmdot \pmimp \pmdot p \pmimp r\text{.}
+\]
+For if, in this proposition, we replace $p$ by $q \pmimp r$, $q$ by $p \pmimp q$, and $r$ by $p \pmimp r$, we obtain, as an instance of $\pmast2\pmcdot04$, the proposition
+\begin{flalign*}
+	& \hspace{2em} \pmthm \pmdotttt q \pmimp r \pmdot \pmimp \pmdott p \pmimp q \pmdot \pmimp \pmdot p \pmimp r \pmdottt \pmimp \pmdottt p \pmimp q \pmdot \pmimp \pmdott q \pmimp r \pmdot \pmimp \pmdot p \pmimp r && & (1), 
+\end{flalign*}
+and here the hypothesis is asserted by $\pmast2\pmcdot05$. Thus our primitive proposition $\pmast1\pmcdot11$ enables us to assert the conclusion.
+
+\pagef{101}
+\begin{flalign*}
+	\pmsnb{1}{2}\text{. } \pmthm \pmdott p \pmor p \pmdot \pmimp \pmdot p \pmpp. &&
+\end{flalign*}
+
+This proposition states: ``If either $p$ is true or $p$ is true, then $p$ is true.'' It is called the ``principle of tautology,'' and will be quoted by the abbreviated title of  ``Taut.'' It is convenient, for purposes of reference, to give names to a few of the more important propositions; in general, propositions will be referred to by their numbers.
+\begin{flalign*}
+	\pmsnb{1}{3}\text{. } \pmthm \pmdott q  \pmdot \pmimp \pmdot p \pmor q \pmpp. &&
+\end{flalign*}
+
+This principle states: ``If $q$ is true, then `$p$ or $q$' is true.'' Thus \textit{e.g.}\ if $q$ is ``to-day is Wednesday'' and $p$ is ``to-day is Tuesday,'' the principle states: ``If to-day is Wednesday, then to-day is either Tuesday or Wednesday.'' It is called the ``principle of addition,'' because it states that if a proposition is true, any alternative may be added without making it false. The principle will be referred to as ``Add.''
+\begin{flalign*}
+	\pmsnb{1}{4}\text{. } \pmthm \pmdott p \pmor q  \pmdot \pmimp \pmdot q \pmor p \pmpp. &&
+\end{flalign*}
+
+This principle states that ``$p$ or $q$'' implies ``$q$ or $p$.'' It states the permutative law for logical addition of propositions, and will be called the ``principle of permutation.'' It will be referred to as ``Perm.''
+\begin{flalign*}
+	\pmsnb{1}{5}\text{. } \pmthm \pmdott p \pmor (q \pmor r) \pmdot \pmimp \pmdot q \pmor (p \pmor r) \pmpp. &&
+\end{flalign*}
+
+This principle states: ``If either $p$ is true, or `$q$ or $r$' is true, then either $q$ is true, or `$p$ or $r$' is true.'' It is a form of the associative law for logical addition, and will be called the ``associative principle.'' It will be referred to as ``Assoc.'' The proposition
+\[ 
+p \pmor (q \pmor r) \pmdot \pmimp \pmdot (p \pmor q) \pmor r,
+\]
+which would be the natural form for the associative law, has less deductive power, and is therefore not taken as a primitive proposition.
+
+\pagesp{97} \begin{flalign*}
+	\pmsnb{1}{6}\text{. } \pmthm \pmdottt q \pmimp r \pmdot \pmimp \pmdott p \pmor q \pmdot \pmimp \pmdot p \pmor r \pmpp. &&
+\end{flalign*}
+
+This principle states: ``If $q$ implies $r$, then `$p$ or $q$' implies `$p$ or $r$.'{''} In other words, in an implication, an alternative may be added to both premiss and conclusion without, impairing the truth of the implication. The principle will be called the ``principle of summation,'' and will be referred to as ``Sum.'' 
+
+\vspace{.1cm}
+\noindent \(\pmsnb{1}{7}\). \hspace{.05cm} If \(p\) is an elementary proposition, \(\pmnot p\) is an elementary proposition. \(\pmpp\). 
+\vspace{.1cm}
+
+\noindent \(\pmsnb{1}{71}\). \hspace{.05cm} If \(p\) and \(q\) are elementary propositions, \(p \pmor q\) is an elementary proposition. \(\pmpp.\) 
+\vspace{.1cm}
+
+\noindent \(\pmsnb{1}{72}\). \hspace{.05cm}  If \(\phi p\) and \(\psi p\) are elementary propositional functions which take elementary propositions as arguments, \(\phi p \pmor \psi p\) is an elementary propositional function. \(\pmpp\).
+\vspace{.1cm}
+
+This axiom is to apply also to functions of two or more variables. It is called the ``axiom of identification of real variables.'' It will be observed that if $\phi$ and $\psi$ are functions which take arguments of different types, there is no such function as ``$\phi x \pmor \psi x$,'' because $\phi$ and $\psi$ cannot significantly have the same argument. A more general form of the above axiom will be given in $\pmast9$.
+
+The use of the above axioms \(\pmast1\pmcdot7\pmcdot71\pmcdot72\) will generally be tacit. It is only through them and the axioms of $\pmast9$ that the theory of types explained in the Introduction becomes relevant, and any view of logic which justifies these axioms justifies such subsequent reasoning as employs the theory of types.
+
+This completes the list of primitive propositions required for the theory of deduction as applied to elementary propositions.

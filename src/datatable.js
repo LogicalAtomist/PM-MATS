@@ -76,7 +76,7 @@ export let table = new DataTable('#principia-table', {
     responsive: true,
     pageLength: 250,
     pagingType: 'simple_numbers',
-    dom: 'Bfrtip',
+    dom: 'pBfrtip',
     autoWidth: false,
     lengthMenu: [[250]],
     buttons: [

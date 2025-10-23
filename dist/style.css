@@ -73,7 +73,7 @@ body {
 }
 
 #pm-map {
-    padding-right: 2rem;
+    padding-right: 110rem;
     padding-bottom: 2rem;
     margin-bottom: 2rem;
     overflow: visible;
@@ -113,6 +113,69 @@ body {
     pointer-events: none;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+.tooltip {
+    position: absolute;
+    text-align: center;
+    max-width: 300px;
+    padding: 5px;
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    background: rgb(240, 247, 255);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    pointer-events: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    white-space: normal;
+}
+
+.svg-tooltip {
+    position: absolute;
+    text-align: center;
+    width: 600px; 
+    height: auto; 
+    padding: 10px;
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    background: rgb(240, 247, 255);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    pointer-events: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    white-space: normal;
+    overflow: hidden;
+}
+
+.svg-tooltip svg {
+    width: 100%; 
+    height: auto;
+    display: block;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 800px) {
+    .svg-tooltip {
+        max-width: 90%;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 600px) {
+    .svg-tooltip {
+        max-width: 100%;
+        padding: 5px;
+    }
+}
+
+@media (max-width: 400px) {
+    .svg-tooltip {
+        max-width: 100%;
+        padding: 3px;
+    }
+}
+
+
+
 
 /* Custom CSS to modify navbar */
 .navbar {
@@ -358,3 +421,7 @@ figcaption {
     font-size: small;
     margin-bottom: 1rem;
 }
+
+.fallback-symbol {
+    font-family: "Noto Sans Symbols2", "Noto Sans Symbols", "Apple Color Emoji", "Segoe UI Symbol", sans-serif
+  }

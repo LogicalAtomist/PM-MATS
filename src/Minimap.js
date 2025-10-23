@@ -193,15 +193,13 @@ export class Minimap {
                 currentUrl.search = ''
                 currentUrl.pathname = currentUrl.pathname.replace('map.html', '')
                 for (let [key, value] of new URLSearchParams(window.location.search).entries()) {
-                    if (key !== 'edition-2') {
+                    if (key !== 'edition-2' && key !== 'n') { 
                         queryString.append(key, value)
                     }
-                }
+                }  
                 let newUrl = `${currentUrl.origin}${currentUrl.pathname}?${queryString.toString()}`
                 window.open(newUrl, '_blank')
-            })
-            
-        
+            })            
     }
 
     /**

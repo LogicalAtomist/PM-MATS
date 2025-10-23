@@ -1,0 +1,908 @@
+d%\documentclass{cspmB}
+%\usepackage[twoside,paperheight=10in,paperwidth=7in,textwidth=]{geometry}
+%\usepackage{amssymb} 
+%\usepackage{amsmath}
+%\usepackage{amsthm}
+%\usepackage{perpage}
+%\usepackage{indentfirst}
+%\usepackage[round]{natbib}
+%\usepackage{floatpag}
+%\usepackage{rotating}
+%\rotfloatpagestyle{empty}
+%\usepackage[utf8]{inputenc}
+%\usepackage[xindy]{imakeidx}\makeindex
+%\usepackage[linkcolor=black,hidelinks,pdfencoding=unicode]{hyperref}
+%\usepackage{enumitem}
+%\usepackage{moreenum}
+%\usepackage[perpage,symbol]{footmisc}
+%\usepackage{times}
+%\usepackage{setspace}
+%\usepackage{graphicx} 
+%\usepackage{pifont} 
+%\usepackage[ruled]{manyfoot}
+%\DeclareNewFootnote{E}[arabic]
+%\usepackage{principia}
+%\usepackage{titlesec}
+%\usepackage[stable]{footmisc}
+%\usepackage{multind} \ProvidesPackage{multind}
+%\usepackage[T1]{fontenc} %Can be omitted
+
+%\newcommand{\pagef}[1]{\marginpar{\text{#1\(_\text{F}\)}}}
+%\newcommand{\pages}[1]{\marginpar{\text{#1\(_\text{S}\)}}}
+%\newcommand{\pagep}[1]{\marginpar{\text{#1\(_\text{P}\)}}}
+%\newcommand{\pagefs}[1]{\marginpar{\text{#1\(_\text{FS}\)}}}
+%\newcommand{\pageFs}[2]{\marginpar{\text{#1\(_\text{F}\)}\text{#2\(_\text{S}\)}}}
+%\newcommand{\pageSp}[2]{\marginpar{\text{#1\(_\text{S}\)}\text{#2\(_\text{P}\)}}}
+%\newcommand{\pageFsp}[2]{\marginpar{\text{#1\(_\text{F}\)}\text{#2\(_\text{SP}\)}}}
+%\newcommand{\pagesp}[1]{\marginpar{\text{#1\(_\text{SP}\)}}}
+%\newcommand{\pagefp}[1]{\marginpar{\text{#1\(_\text{FP}\)}}}
+%\newcommand{\pagefsp}[1]{\marginpar{\text{#1\(_\text{FSP}\)}}}
+%\setlength\marginparwidth{40pt}
+
+%\usepackage{tikz}
+%\usepackage{pdfbase}[2017/03/16]
+%\usepackage{xparse}
+%\usepackage{ocgbase}
+%\usepackage{xcolor}
+%\usepackage{calc}
+%\usepackage{tikzpagenodes}
+%\usepackage{linegoal}
+%\usetikzlibrary{calc}
+%\usepackage{tcolorbox}
+
+%   \tooltip     --> draggable tip, visible on mouse-over, hidden on mouse-out
+%   \tooltip*    --> draggable tip, toggle visiblity on mouse-over
+%   \tooltip**   --> NON-draggable tip, visible on mouse-over, hidden on mouse-out
+%   \tooltip***  --> NON-draggable tip, toggle visiblity on mouse-over
+%   \tooltip**** --> NON-draggable tip, toggle visiblity on mouse-click
+% 			Default link colour can be set with
+%   \usepackage[linkcolor=<colour>]{hyperref}
+
+%\ExplSyntaxOn
+%\let\tpPdfLink\pbs_pdflink:nn
+%\let\tpPdfAnnot\pbs_pdfannot:nnnn\let\tpPdfLastAnn\pbs_pdflastann:
+%\let\tpAppendToFields\pbs_appendtofields:n
+%\def\tpPdfXform{\pbs_pdfxform:nnnnn{1}{1}{}{}}
+%\let\tpPdfLastXform\pbs_pdflastxform:
+%\let\cListSet\clist_set:Nn\let\cListItem\clist_item:Nn
+%\ExplSyntaxOff
+
+%\makeatletter
+%\NewDocumentCommand{\tooltip}{%
+	%	ssssO{\ifdefined\@linkcolor\@linkcolor\else blue\fi}mO{yellow!20}mO{0pt,0pt}%
+	%}{{%
+		%		\leavevmode%
+		%		\IfBooleanT{#2}{%
+			%for variants with two and more stars, put tip box on a PDF Layer (OCG)
+			%			\ocgbase@new@ocg{tipOCG.\thetcnt}{%
+				%				/Print<</PrintState/OFF>>/Export<</ExportState/OFF>>%
+				%			}{false}%
+			%			\xdef\tpTipOcg{\ocgbase@last@ocg}%
+			%prevent simultaneous visibility of multiple non-draggable tooltips
+			%			\ocgbase@add@ocg@to@radiobtn@grp{tool@tips}{\ocgbase@last@ocg}%
+			%		}%
+		%		\tpPdfLink{%
+			%			\IfBooleanTF{#4}{%
+				%				/Subtype/Link/Border[0 0 0]/A <</S/SetOCGState/State [/Toggle \tpTipOcg]>>
+				%			}{%
+				%				/Subtype/Screen%
+				%				/AA<<%
+				%				\IfBooleanTF{#3}{%
+					%					/E<</S/SetOCGState/State [/Toggle \tpTipOcg]>>%
+					%				}{%
+					%					\IfBooleanTF{#2}{%
+						%						/E<</S/SetOCGState/State [/ON \tpTipOcg]>>%
+						%						/X<</S/SetOCGState/State [/OFF \tpTipOcg]>>%
+						%					}{
+						%						\IfBooleanTF{#1}{%
+							%							/E<</S/JavaScript/JS(%
+							%							var fd=this.getField('tip.\thetcnt');%
+							%							if(typeof(click\thetcnt)=='undefined'){%
+								%								var click\thetcnt=false;%
+								%								var fdor\thetcnt=fd.rect;var dragging\thetcnt=false;%
+								%							}%
+							%							if(fd.display==display.hidden){%
+								%								fd.delay=true;fd.display=display.visible;fd.delay=false;%
+								%							}else{%
+								%								if(!click\thetcnt&&!dragging\thetcnt){fd.display=display.hidden;}%
+								%								if(!dragging\thetcnt){click\thetcnt=false;}%
+								%							}%
+							%							this.dirty=false;%
+							%							)>>%
+							%						}{%
+							%							/E<</S/JavaScript/JS(%
+							%							var fd=this.getField('tip.\thetcnt');%
+							%							if(typeof(click\thetcnt)=='undefined'){%
+								%								var click\thetcnt=false;%
+								%								var fdor\thetcnt=fd.rect;var dragging\thetcnt=false;%
+								%							}%
+							%							if(fd.display==display.hidden){%
+								%								fd.delay=true;fd.display=display.visible;fd.delay=false;%
+								%							}%
+							%							this.dirty=false;%
+							%							)>>%
+							%							/X<</S/JavaScript/JS(%
+							%							if(!click\thetcnt&&!dragging\thetcnt){fd.display=display.hidden;}%
+							%							if(!dragging\thetcnt){click\thetcnt=false;}%
+							%							this.dirty=false;%
+							%							)>>%
+							%						}%
+						%						/U<</S/JavaScript/JS(click\thetcnt=true;this.dirty=false;)>>%
+						%						/PC<</S/JavaScript/JS (%
+						%						var fd=this.getField('tip.\thetcnt');%
+						%						try{fd.rect=fdor\thetcnt;}catch(e){}%
+						%						fd.display=display.hidden;this.dirty=false;%
+						%						)>>%
+						%						/PO<</S/JavaScript/JS(this.dirty=false;)>>%
+						%					}%
+					%				}%
+				%				>>%
+				%			}%
+			%		}{{\color{#5}#6}}%
+		%		\sbox\tiptext{%
+			%			\IfBooleanT{#2}{%
+				%				\ocgbase@oc@bdc{\tpTipOcg}\ocgbase@open@stack@push{\tpTipOcg}}%
+			%\fcolorbox{black}{#7}{#8}%
+			%			\tcbox[colframe=black,colback=#7,size=fbox,arc=1ex,sharp corners=southwest]{#8}%
+			%			\IfBooleanT{#2}{\ocgbase@oc@emc\ocgbase@open@stack@pop\tpNull}%
+			%		}%
+		%		\cListSet\tpOffsets{#9}%
+		%		\edef\twd{\the\wd\tiptext}%
+		%		\edef\tht{\the\ht\tiptext}%
+		%		\edef\tdp{\the\dp\tiptext}%
+		%		\tipshift=0pt%
+		%		\IfBooleanTF{#2}{%
+			%			%OCG-based (that is, all non-draggable) boxes should not extend beyond the
+			%			%current column as they may get overlaid by text in the neighbouring column
+			%			\setlength\whatsleft{\linegoal}%
+			%		}{%
+			%			\measureremainder{\whatsleft}%
+			%		}%
+		%		\ifdim\whatsleft<\dimexpr\twd+\cListItem\tpOffsets{1}\relax%
+		%		\setlength\tipshift{\whatsleft-\twd-\cListItem\tpOffsets{1}}\fi%
+		%		\IfBooleanF{#2}{\tpPdfXform{\tiptext}}%
+		%		\raisebox{\heightof{#6}+\tdp+\cListItem\tpOffsets{2}}[0pt][0pt]{%
+			%			\makebox[0pt][l]{\hspace{\dimexpr\tipshift+\cListItem\tpOffsets{1}\relax}%
+				%				\IfBooleanTF{#2}{\usebox{\tiptext}}{%
+					%					\tpPdfAnnot{\twd}{\tht}{\tdp}{%
+						%						/Subtype/Widget/FT/Btn/T (tip.\thetcnt)%
+						%						/AP<</N \tpPdfLastXform>>%
+						%						/MK<</TP 1/I \tpPdfLastXform/IF<</S/A/FB true/A [0.0 0.0]>>>>%
+						%						/Ff 65536/F 3%
+						%						/AA <<%
+						%						/U <<%
+						%						/S/JavaScript/JS(%
+						%						var fd=event.target;%
+						%						var mX=this.mouseX;var mY=this.mouseY;%
+						%						var drag=function(){%
+							%							var nX=this.mouseX;var nY=this.mouseY;%
+							%							var dX=nX-mX;var dY=nY-mY;%
+							%							var fdr=fd.rect;%
+							%							fdr[0]+=dX;fdr[1]+=dY;fdr[2]+=dX;fdr[3]+=dY;%
+							%							fd.rect=fdr;mX=nX;mY=nY;%
+							%						};%
+						%						if(!dragging\thetcnt){%
+							%							dragging\thetcnt=true;Int=app.setInterval("drag()",1);%
+							%						}%
+						%						else{app.clearInterval(Int);dragging\thetcnt=false;}%
+						%						this.dirty=false;%
+						%						)%
+						%						>>%
+						%						>>%
+						%					}%
+					%					\tpAppendToFields{\tpPdfLastAnn}%
+					%				}%
+				%		}}%
+		%		\stepcounter{tcnt}%
+		%}}
+%\makeatother
+%\newsavebox\tiptext\newcounter{tcnt}
+%\newlength{\whatsleft}\newlength{\tipshift}
+%\newcommand{\measureremainder}[1]{%
+	%	\begin{tikzpicture}[overlay,remember picture]
+		%		\path let \p0 = (0,0), \p1 = (current page.east) in
+		%		[/utils/exec={\pgfmathsetlength#1{\x1-\x0}\global#1=#1}];
+		%	\end{tikzpicture}%
+	%}
+
+%\begin{filecontents*}[overwrite]{num.sty}
+%	414=\pmast4\pmcdot14
+%	4.24=\tooltip****{\(\pmast4\pmcdot24\)}{\(\pmast4\pmcdot24.\; \pmthm \pmdott p \pmdot \pmiff \pmdot p \pmand p\)}
+%\end{filecontents*}
+%\makeatletter
+%\newread\nina@read
+%\newcommand{\grabdata}[1]{%
+	%	\begingroup\endlinechar=\m@ne
+	%	\openin\nina@read=#1\relax
+	%	\loop\ifeof\nina@read\else
+	%	\read\nina@read to \@tempa
+	%	\nina@convert
+	%	\repeat
+	%	\closein\nina@read
+	%	\endgroup}
+%\def\nina@convert{%
+	%	\if\relax\detokenize\expandafter{\@tempa}\relax\else
+	%	\expandafter\nina@convert@i\@tempa\relax
+	%	\fi}
+%\def\nina@convert@i#1=#2\relax{%
+	%	\global\@namedef{nina@data@#1}{#2}}
+%\newcommand{\num}[1]{\@nameuse{nina@data@#1}}
+%\makeatother
+%\grabdata{num.sty}
+%\newcommand{\}{\tooltip**[blue]{\(\pmast4\pmcdot24\)}{\(\pmast4\pmcdot24.\; \pmthm \pmdott p \pmdot \pmiff \pmdot p \pmand p\)}}
+	
+%	\newenvironment{pme}{\flalign*}{\endflalign*}
+	
+%	\newcommand{\fmimp}{\mathrel{\rotatebox[origin=c]{180}{\scriptsize\textbf{C}}}}
+	
+\chapter*{❋8. The Theory of Deduction for Propositions Containing Apparent Variables} \markboth{Appendix A}{Appendix A}
+\pageSp{635}{385} All\footnote{This chapter is to replace \(\pmast9\) of the text.} propositions, of whatever order, are derived from a matrix composed of elementary propositions combined by means of the stroke. Given such a matrix, any constituent may be left constant or turned into an apparent variable; the latter may be done in two ways, by taking ``all values'' or ``some values.'' Thus, if \(p\) and \(q\) are elementary propositions, giving rise to \(p \pminc q\), we may replace \(p\) by \(\phi x\) or \(q\) by \(\psi y\) or both, where \(\phi x\), \(\psi y\) are propositional functions whose values are elementary propositions. We thus arrive, to begin with, at four new propositions:
+\[ \pmall{x} \pmdot (\phi x \pminc q),  \quad \pmsome{x} \pmdot (\phi x \pminc q), \quad \pmall{y} \pmdot (p \pminc \psi y), \quad \pmsome{y} \pmdot (\psi y \pminc y) .\]
+
+By means of definitions, we can separate out the constant and the variable part in these expressions; we put
+\begin{flalign*}
+	& \pmsnb{8}{01}. \; \; \quad \{\pmall{x} \pmdot \phi x\}\pminc q \pmdot \pmiddf \pmdot \pmsome{x} \pmdot (\phi x \pminc q) \quad \pmdf & \\
+	& \pmsnb{8}{011}. \quad \{\pmsome{x} \pmdot \phi x\}\pminc q \pmdot \pmiddf \pmdot \pmall{x} \pmdot (\phi x \pminc q) \quad \pmdf & \\
+	& \pmsnb{8}{012}. \quad p \pminc \{\pmall{x} \pmdot \phi x\} \pmdot \pmiddf \pmdot \pmsome{x} \pmdot (p \pminc \phi x) \quad \pmdf & \\
+	& \pmsnb{8}{013}. \quad p \pminc \{\pmsome{x} \pmdot \phi x\} \pmdot \pmiddf \pmdot \pmall{x} \pmdot (p \pminc \phi x) \quad \pmdf & 	
+\end{flalign*}
+These definitions define the meaning of the stroke when it occurs between two propositions of which one is elementary while the other is of the first order.
+
+When the stroke occurs between two propositions which are both of the first order, we shall adopt the rule that the above definitions are: to be applied first to the one on the left, treating the one on the right as if it were elementary, and are then to be applied to the one on the right. Thus
+\begin{flalign*}
+	 && \{\pmall{x} \pmdot \phi x\} \pminc \{\pmall{y} \pmdot \psi y\} \pmdot & \pmiddf \pmdott \pmsome{x} \pmdott \phi x \pminc \{ \pmall{y} \pmdot \psi y\} \pmdott & \\
+	&& & \pmiddf \pmdott \pmsome{x} \pmdott \pmsome{y} \pmdot (\phi x \pminc \psi y). & 
+\end{flalign*}
+The same rule can be applied to \(n\) propositions; they are to be eliminated from left to right. If a proposition occurs more than once, its occurrences must be eliminated successively as if they were different propositions. These rules are only required for the sake of definiteness, as different orders of elimination give equivalent results. This is only true because we are dealing with various functions each containing one variable, and no variable occurs on both sides of the stroke; it would not be true if we were dealing with functions of several variables. We have \eg 
+\[ \pmsome{x} \pmdott \pmall{y} \pmdot (\phi x \pminc \psi y) \pmdott \pmiff \pmdott \pmall{y} \pmdott \pmsome{x} \pmdot (\phi x \pminc \psi y). \]
+\pageSp{636}{386} But we do not have in general
+\[ \pmsome \pmdott \pmall{x} \pmdot \chi(x,y) \pmdott \pmiff \pmdott \pmall{y} 
+\pmdott \pmsome{x} \pmdot \chi(x,y) ;\]
+here the right-hand side is more likely to be true than the left-hand side. For the present, however, we are not concerned with variable functions of two variables.
+
+It should be observed that this possibility of changing the order of the variables is a merit of the stroke. We have
+\[ \pmsome{x} \pmdott \pmall{y} \pmdot \phi x \pminc \psi y \pmdott \pmiff \pmdott \pmall{y} \pmdott \pmsome{x} \pmdot \phi x \pminc \psi y \pmdott \pmiff \pmdott \pmsome{x} \pmdot \pmnot \phi x \pmdot \pmor \pmdot \pmall{y} \pmdot \pmnot \psi y. \]
+That is, these equivalent propositions are true when, and only when, either \(\phi\) is sometimes false or \(\psi\) is always false. But if we take \eg
+\[ \phi x \pmor \psi y \pmand \pmnot \phi x \pmor \pmnot \psi y\]
+we shall not get the same result. For
+\begin{flalign*}
+	&& &\pmsome{x} \pmdott \pmall{y} \pmdot \phi x \pmor \psi y \pmand \pmnot \phi x \pmor \pmnot \psi y \pmdott \pmimp \pmdott \pmall{y} \pmdot \psi y \pmdot \pmor \pmdot \pmall{y} \pmdot \pmnot \psi y, &
+\end{flalign*}
+whereas \(\pmall{y} \pmdott \pmsome{x} \pmdot \phi x \pmor \psi y \pmand \pmnot \phi x \pmor \pmnot \psi y\) does not imply this.
+
+Written in stroke notation, after some reduction, the above matrix is
+\[ \{\phi x \pminc (\psi y \pminc \psi y)\}\pminc \{\psi y \pminc (\phi x \pminc \phi x)\}. \]
+to be able to change the order of ``\(\pmsome{x}\)'' and ``\(\pmall{y}\),'' it is sufficient (though not always necessary) that the matrix should contain some part of the form \(\phi x \pminc \psi y\), and that \(x\) and \(y \) should not occur in any other part of the matrix. (This part may of course be the whole matrix.) We assume the legitimacy of this interchange by a primitive proposition, and in practice arrange to have all the \(\pmSome\)-prefixes as far to the right as possible, because this facilitates proofs.
+	
+Our primitive propositions are the following:
+\begin{flalign*}
+	& \pmsnb{8}{1}. \quad \;\, \pmthm\pmdot\pmsome{x,y} \pmdot \phi a \pminc (\phi x \pminc \phi y)  \pmpp & 
+\end{flalign*}
+On applying the definitions, this is seen to be
+\begin{flalign*}
+	& \qquad \pmthm \pmdott \phi a \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x  & 
+\end{flalign*}
+\begin{flalign*}
+	& \pmsnb{8}{11}. \quad \pmthm\pmdot\pmsome{x} \pmdot \phi x \pminc (\phi a\pminc \phi b)  \pmpp & 
+\end{flalign*}
+On applying the definitions, this is seen to be
+\begin{flalign*}
+	& \qquad \pmthm \pmdott \pmall{x} \pmdot \phi x  \pmdot \pmimp \pmdot \phi a & 
+\end{flalign*}
+\begin{flalign*}
+	&\text{We have} & & \phi a \pminc (\phi a \pminc \phi b) \pmdot \pmor \pmdot \phi b \pminc (\phi a \pminc \phi b) & \\
+	&\text{and by } \pmsn{8}{1} & \pmthm \pmdott { } & \phi a \pminc (\phi a \pminc \phi b) \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x \pminc (\phi a \pminc \phi b) \pmandd & \\
+	&& & \, \phi b \pminc (\phi a \pminc \phi b) \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x \pminc (\phi a \pminc \phi b), &
+\end{flalign*}
+but we cannot deduce \(\pmsome{x} \pmdot \phi x \pminc (\phi a \pminc \phi b)\) without \(\pmsn{8}{11}\) or an equivalent.
+
+\vspace{.1cm}
+\noindent \(\pmsnb{8}{12}\). \hspace{.05cm} From ``\(\pmall{x}\pmdot\phi x\)'' and ``\(\pmall{x}\pmdot \phi x \pmimp \psi x\)'' we can infer ``\(\pmall{x} \pmdot\psi x\)'' even when \(\phi\) and \(\psi\) are not elementary. \(\pmpp\). 
+\vspace{.1cm}
+
+\vspace{.1cm}
+\noindent \(\pmsnb{8}{13}\). \hspace{.05cm} If all occurrences of \(x \)are separated from all occurrences of \(y\) by a certain stroke, we can change the order of \(x\) and \(y\) in the prefix, \ie we can replace ``\(\pmall{y} \pmdott \pmsome{x} \pmdot \phi x \pminc \psi y\)'' by ``\(\pmsome{x} \pmdott \pmall{y} \pmdot \phi x \pminc \psi y\)'' and \emph{vice versa}. \(\pmpp\). 
+\vspace{.1cm}
+
+\pageSp{637}{387} The above primitive propositions are to be assumed, not only for one or two variables, but for any number. Thus \eg \(\pmsn{8}{1\)} allows us to assert
+\[ \pmthm \pmdott \phi(a_1, a_2, ..., a_n) \pmdot \pmimp \pmdot \pmsome{x_1, x_2, ..., x_n} \pmdot \phi(x_1, x_2, ..., x_n) .\]
+\begin{flalign*}
+	& \pmsnb{8}{2}. \quad \;\, \pmthm\pmdot\pmall{x} \pmdot \phi x \pmdot \pmimp \pmdot \phi a  \quad \pmSub{\pmsn{8}{11}}{a}{b} & 
+\end{flalign*}
+In what follows, the method of proof is invariably the same. We first apply the definitions until the whole asserted proposition is brought into the form of a matrix with a prefix. If necessary, we apply \(\pmsn{8}{13}\) to change the order of the variables in the prefix. When the proposition to be proved has been brought into this form, we deduce it by means of \(\pmsnn{8}{1}{11}\), using \(\pmsn{8}{12}\) in the deduction if necessary. It will be observed that \(\pmsn{8}{1}\) is \(\pmthm \pmdott \phi a \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x\). Hence, by \(\pmsn{8}{12}\), whenever we know \(\phi a\), we can assert \( \pmsome{x} \pmdot \phi x\); \(\pmsn{8}{1}\) is often used in this way.
+\begin{flalign*}
+	& \pmsnb{8}{21}. \quad \pmthm \pmdottt \pmall{x} \pmdot \phi x \pmimp \psi x \pmdot \pmimp \pmdott \pmsome{x} \pmdot \phi x \pmdot \pmimp \pmdot \pmsome{x} \pmdot \psi x & 
+\end{flalign*}
+\pmdemi 
+
+Applying the definitions, and using \(\pmsn{8}{13}\), the proposition to be proved becomes
+\[ \pmall{y, y'} \pmdott \pmsome{x, z, w, z', w'} \pmdot \{\phi x \pminc (\psi x \pminc \psi x)\} \pminc [\{\phi y \pminc (\psi z \pminc \psi w)\}\pminc\{\phi y' \pminc (\psi z' \pminc \psi w')\}]. \]
+Putting \(z =w = z' = w' = x\), the above becomes
+\[ \pmall{y, y'} \pmdott \pmsome{x} \pmdot \{\phi x \pminc (\psi x \pminc \psi x)\} \pminc [\{\phi y \pminc (\psi x \pminc \psi x)\}\pminc\{\phi y' \pminc (\psi x' \pminc \psi x')\}]. \]
+By \(\pmsn{8}{1}\), the proposition to be proved is true if this is true. But this is true by  \(\pmsn{8}{11}\), putting \(y, y'\) for \(a, b\) and \(\phi y \pminc (\psi x \pminc \psi x)\) for \(\phi a\). Hence the proposition is true.
+\begin{flalign*}
+	& \pmsnb{8}{22}. \quad \pmthm \pmdott \phi a \pmor \phi b \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x & 
+\end{flalign*}
+\pmdemi 
+\begin{flalign*}
+	& \pmthm \pmdot \pmsn{8}{11} \pmdot & & \pmithm \pmdot \pmsome{z} \pmdot (\pmnot \phi z) \pminc (\pmnot \phi a \pminc \pmnot \phi b) & (1) \\
+	& \pmnsn{Transp} \pmdot & & \pmithm \pmdott (\pmnot \phi z) \pminc (\pmnot \phi a \pminc \pmnot \phi b) \pmdot \pmimp \pmdot (\phi a \pmor \phi b) \pminc (\phi z \pminc \phi z) & (2) \\
+	& \pmthm \pmdot (1) \pmand (2) \pmand \pmsn{8}{21} \pmdot & & \pmithm \pmdot \pmsome{z} \pmdot (\phi a \pmor \phi b) \pminc (\phi z \pminc \phi z) & (3) \\
+	& \pmthm \pmdot (3) \pmand \pmsnn{8}{1}{21} \pmdot & & \pmithm \pmdot \pmsome{z,w} \pmdot (\phi a \pmor \phi b) \pminc (\phi z \pminc \phi w) \pmdot & \\
+	& [\pmpsnn{8}{012}{013}] & & \pmithm \pmdott \phi a \pmor \phi b \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x \pmdott \pmithm \pmdot \pmprop & 
+\end{flalign*}
+\begin{flalign*}
+& \pmsnb{8}{23}. \quad \pmthm \pmdott \pmsome{x} \pmdot \phi x \pmor \phi c \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x & 
+\end{flalign*}
+\pmdemi 
+
+Applying the definitions, this proposition is
+\begin{flalign*}
+	&& & \pmall{x} \pmdott \pmsome{y, z} \pmdot (\phi x \pmor \phi c) \pminc (\phi y \pminc \phi z), & \\
+	&\text{\ie} & & \pmall{x} \pmdott \phi x \pmor \phi c \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x
+ \end{flalign*}
+which follows from \(\pmsn{8}{22}\).
+
+\pageSp{638}{388} The following propositions are concerned with forms of the syllogism.
+\begin{flalign*}
+	& \pmsnb{8}{24}. \quad \pmthm \pmdotttt p \pmimp q \pmdot \pmimp \pmdottt q \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x \pmdott \pmimp \pmdott  p \pmdot \pmimp \pmdot \pmsome{x} \phi x & 
+\end{flalign*}
+\pmdemi 
+
+Applying the definitions, we obtain a matrix
+\begin{flalign*}
+	 (p \pmimp q) \pminc [\{(q \pminc (\phi x \pminc \phi y)) \pminc (p \pminc (\phi z \pminc \phi w&) \pminc p \pminc (\phi u \pminc \phi v))\} \pminc & \\
+	& \{\text{the same with accented letters}\}] &
+\end{flalign*}
+with a prefix 
+\[ \pmall{x,y,x',y'} \pmdott \pmsome{z,w,y,v,z',w',u',v'}.\]
+By \(\pmsn{8}{1}\), this will be true if it is true for chosen values of \(z, w, u, v, z', w', u', v'\). Put \(z=u=x \pmand w=v=y \pmand z'=u'=x' \pmand w'=v'=y'\). Then what has to be proved becomes
+\begin{flalign*}
+	p \pmimp q  \pmdot \pmimp \pmdottt q \pmdot \pmimp \pmdot \phi x \pmand \phi y \pmdott {} & \pmimp \pmdott p \pmdot \pmimp \pmdot \phi x \pmand \phi y \pmanddd & \\
+	& q \pmdot \pmimp \pmdot \phi x' \pmand \phi y' \pmdott \pmimp \pmdott p \pmdot \pmimp \pmdot \phi x' \pmand \phi y', &
+\end{flalign*} 
+which is true by Syll. Hence the proposition follows.
+\begin{flalign*}
+	& \pmsnb{8}{241}. \:\:\: \pmthm \pmdotttt \pmall{x} \pmdot \phi x \pmdot \pmimp \pmdot p \pmdott \pmimp \pmdottt p \pmimp q \pmdot \pmimp \pmdott \pmall{x} \pmdot \phi x \pmdot \pmimp \pmdot q & 
+\end{flalign*}
+Putting {\centering \(f(y,z) \pmdot \pmid \pmdot \{p \pminc (q \pminc q)\} \pminc [\{\phi y\pminc(q \pminc q)\}\pminc \{\phi z \pminc (q \pminc q)\}]\),} \\ 
+the matrix of the proposition to be proved is
+\[ \{\phi x \pminc (p \pminc p)\}\pminc \{f(y,z) \pminc f(y',z')\}\]
+and the prefix is \(\pmall{x} \pmdott \pmsome{y,z,y',z'}\). Putting \(y=z=y'=z'=x\), the matrix reduces to \(\phi x \pmimp p \pmdot \pmimp \pmdott p \pmimp q \pmdot \pmimp \pmdot \phi x \pmimp q\), which is true by Syll. Hence the proposition is true by \(\pmsn{8}{1}\). 
+\begin{flalign*}
+	& \pmsnb{8}{25}. \, \pmthm \pmdotttt p \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x \pmdott \pmimp \pmdottt \pmsome{x} \pmdot \phi x \pmdot \pmimp \pmdot \pmsome{x} \pmdot \psi x \pmdott \pmimp \pmdott  p \pmdot \pmimp \pmdot \pmsome{x} \pmdot \psi x & 
+\end{flalign*}
+\pmdemi 
+
+Put \[f(x,y,z,u,v,m,n) \pmdot \pmid \pmdot \{\phi x \pminc (\psi y \pminc \psi z)\} \pminc [\{p \pminc (\psi u \pminc \psi v)\} \pminc \{p \pminc (\psi m \pminc \psi n)\}].\] Then the proposition to be proved, on applying the definitions, is found to have a matrix
+\[ \{p \pminc (\phi a \pminc \phi b)\} \pminc \{f(x,y,z,u,v,m,n) \pminc f(x',y',z',u',v',m',n')\} \]
+with the prefix
+\[ \pmall{a,b,y,z,y',z'} \pmdott \pmsome{x,u,v,m,n,x',u',v',m',n'}. \]
+Then the matrix reduces to
+\begin{flalign*}
+	&& p \pmdot \pmimp\pmdot \phi a \pmand \phi b \pmdott \pmimp \pmdottt {} & \phi a \pmdot \pmimp \pmdot \psi y \pmand \psi z \pmdott \pmimp \pmdott p \pmdot \pmimp \pmdot \psi y \pmand \psi z \pmdottt & \\
+	&& & \phi b \pmdot \pmimp \pmdot \psi y' \pmand \psi z' \pmdott \pmimp \pmdott p \pmdot \pmimp \pmdot \psi y' \pmand \psi z' \pmdottt & \\
+\end{flalign*}
+which is true by Syll. Hence our proposition results by repeated applications of \(\pmsnn{8}{1}{13}\).
+
+Analogous proofs apply to other forms of the syllogism.
+\begin{flalign*}
+	& \pmsnb{8}{26}. \quad \pmthm \pmdott \phi a \pmor \phi b \pmor \phi c \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x \pmor \phi c & 
+\end{flalign*}
+\pmdemi 
+\begin{flalign*}
+	& \pmthm \pmdott \phi a \pmor \phi b \pmor \phi c \pmdot \pmimp \pmdot (\phi a \pmor \phi c) \pmor (\phi b \pmor \phi c) & (1) \\
+	& \pmthm \pmdot \pmsn{8}{22} \pmdot \pmithm \pmdott (\phi a \pmor \phi c) \pmor (\phi b \pmor \phi c) \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x \pmor \phi c & (2) \\
+	& \pmithm \pmdot (1) \pmand (2) \pmand \pmsn{8}{24} \pmdot \pmithm \pmdot \pmprop &
+\end{flalign*}
+\pageSp{639}{389} \begin{flalign*}
+	& \pmsnb{8}{261}. \:\:\: \pmthm \pmdott \phi a \pmor \phi b \pmor \phi c \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x  &  [\pmsnnn{8}{25}{26}{23}]
+\end{flalign*}
+It is obvious that we can prove in like manner
+\[ \phi a \pmor \phi b \pmor \phi c \pmor \phi d \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x \]
+and so on.
+\begin{flalign*}
+	& \pmsnb{8}{27}. \quad \pmthm \pmdotttt q \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x \pmdott \pmimp \pmdottt p \pmimp q \pmdot \pmimp \pmdott p \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x & 
+\end{flalign*}
+\pmdemi 
+
+Put \[f(x,y,u,v) \pmdot \pmid \pmdot \{p \pminc (\phi x \pminc \phi y)\} \pminc \{p \pminc (\phi u \pminc \phi v)\}.\]
+Then the matrix is
+\[\{q \pminc (\phi a \pminc \phi b)\} \pminc [\{(p \pmimp q) \pminc f(x,y,u,v)\} \pminc \{(p \pmimp q) \pminc f(x',y',u',v')\}] \]
+and the prefix is
+\[ \pmall{a, b} \pmdott \pmsome{x,y,u,v,x',y',u',v'}. \]
+Putting \(x=u=x'=u'=a \pmand y=v=y'=v'=b\), the matrix becomes
+\[ q \pmdot \pmimp \pmdot \phi a \pmand \phi b \pmdott \pmimp \pmdottt p \pmimp q \pmdot \pmimp \pmdott p \pmdot \pmimp \pmdot \phi a \pmand \phi b, \]
+which is true. Hence the proposition.
+\begin{flalign*}
+	& \pmsnb{8}{271}. \, \pmthm \pmdotttt q \pmdot \pmimp \pmdot \pmsome{x,y} \pmdot \phi(x,y) \pmdott \pmimp \pmdottt p \pmimp q \pmdot \pmimp \pmdott p \pmdot \pmimp \pmdot \pmsome{x,y} \pmdot \phi(x,y)  &
+\end{flalign*}  
+\qquad [Proof as in \(\pmsn{8}{27}\)]
+
+It is obvious that we can prove similarly the analogous proposition with \(\phi(x_1,x_2,...,x_n)\) in place of \(\phi(x,y)\).
+\begin{flalign*}
+	& \pmsnb{8}{272}. \, \pmthm \pmdottttt p \pmdot \pmimp \pmdott q \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x \pmdottt \pmimp \pmdotttt r \pmimp p \pmdot \pmimp \pmdottt r \pmdot \pmimp \pmdott q \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x  &
+\end{flalign*}  
+\pmdemi 
+
+\(q \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x\) is \(\pmsome{x,y} \pmdot q \pminc (\phi x \pminc \phi y)\). Hence the proposition results from \(\pmsn{8}{271}\) by the substitution of \(p\) for \(q\), \(r\) for \(p\), and \(q \pminc (\phi x \pminc \phi y)\) for \(\phi(x,y)\).
+\begin{flalign*}
+	& \pmsnb{8}{28}. \, \pmthm \pmdotttt p \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x \pmdott \pmimp \pmdottt q \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x \pmdott \pmimp \pmdott p \pmor q \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x & 
+\end{flalign*}
+\pmdemi 
+
+Put 
+\[f(x,y,z,w) \pmdot \pmid \pmdot \{(p \pmor q) \pminc (\phi x \pminc \phi y)\} \pminc \{(p \pmor q) \pminc (\phi z \pminc \phi w)\}.\] 
+Then the matrix is 
+\[ \{p \pminc (\phi a \pminc \phi b)\} \pminc [\{(q \pminc (\phi c\pminc \phi d))\pminc f(x,y,z,w)\} \pminc \{(q\pminc(\phi c'\pminc\phi d'))\pminc f(x',y',z',w')\}] \]
+and the prefix is 
+\[\pmall{a,b,c,d,c',d'} \pmdott \pmsome{x,y,z,w,x',y',z',w'}.\]
+The matrix is 
+\begin{flalign*} && p \pmdot \pmimp \pmdot \phi a \pmand \phi b \pmdott \pmimp \pmdottt {} & q \pmdot \pmimp \pmdot \phi c \pmand \phi d \pmdott \pmimp \pmdot f(x,y,z,w) \pmanddd & \\
+	&& & q \pmdot \pmimp \pmdot \phi c \pmand \phi d \pmdott \pmimp \pmdot f(x,y,z,w) &
+\end{flalign*}
+while \[ f(x,y,z,w) \pmdot \pmiff \pmdott p\pmor q \pmdot \pmimp \pmdot \phi x \pmand \phi y \pmand \phi z \pmand \phi w.\]
+Call the matrix 
+\[F(x,y,z,w,x',y',z',w').\]
+Then 
+\begin{flalign*}
+	&& & \pmthm \pmdott p \pmdot \pmimp \pmdot F(a,b,a,b,a,b,a,b),  & \\
+	&& & \pmthm \pmdott \pmnot p \pmdot \pmimp \pmdot F(c,d,c,d,c',d',c',d'). & 
+\end{flalign*}
+Hence 
+\[  \pmthm \pmdott F(a,b,a,b,a,b,a,b) \pmdot \pmor \pmdot F(c,d,c,d,c',d',c',d').  \]
+\pageSp{640}{390} Hence, by the extension of \(\pmsn{8}{261}\) to eight variables,
+\[ \pmthm \pmdot \pmsome{x,y,z,w,x',y',z',w'} \pmdot F(x,y,z,w,x',y',z',w'), \]
+which was to be proved.
+\begin{flalign*}
+	& \pmsnb{8}{29}. \quad \pmthm \pmdottt \pmall{x} \pmdot \phi x \pmimp \psi x \pmdot \pmimp \pmdott \pmall{x} \pmdot \phi x \pmdot \pmimp \pmdot \pmall{x} \pmdot \psi x & 
+\end{flalign*}
+\pmdemi 
+
+Applying the definitions, our proposition is found to have a matrix
+\[ (\phi x \pmimp \psi x) \pminc [\{\phi y \pminc (\psi u \pminc \psi v)\} \pminc \{\phi y' \pminc (\psi u' \pminc \psi v')\}] \]
+with a prefix (after using \(\pmsn{8}{13}\))
+\[\pmall{u,v,u',v'} \pmdott \pmsome{x,y,y'}. \]
+The matrix is equivalent to
+\[\phi x \pmimp \psi x \pmdot \pmimp \pmdott \phi y \pmdot \pmimp \pmdot \psi u \pmand \psi v \pmandd \phi y' \pmdot \pmimp \pmdot \psi u' \pmand \psi v'.\]
+Calling this \(M(x,y,y')\), we have to prove
+\[ \pmsome{x,y,y'} \pmdot M(x,y,y').\]
+If \(\psi u \pmand \psi v \pmand \psi u' \pmand \psi v'\), \(M(x,y,y')\) is always true. \hfill (1)
+
+If \(\pmnot \psi u\), put \(x \pmid y \pmid y' \pmid u\). THen if \(\phi u\) is true, \(\phi u \pmimp \psi u\) is false, and \(M(u, u, u)\) is true. But if \(\phi u\) is false, \(\phi u \pmdot \pmimp \pmdot \psi u \pmand \psi v\) and \(\phi u \pmdot \pmimp \pmdot \psi u' \pmand \psi v'\) are true, so that \(M(u,u,u)\) is true. Hence
+\begin{flalign*}
+&& & \pmnot \psi u \pmdot \pmimp \pmdot M(u,u,u) \pmdot \pmimp \pmdot \pmsome{x,y,y'} \pmdot M(x,y,y'). & (2) \\
+&\text{Similarly, if} & & \pmnot \psi v \pmor \pmnot \psi u' \pmor \pmnot \psi v'. & (3) 
+\end{flalign*}
+(1), (2), and (3) exhaust possible cases. Hence the result by \(\pmsn{8}{28}\).
+
+We are now in a position to prove that all the propositions of \(\pmschs{1}{5}\) remain true when one or more of the propositions \(p, q, s\) are first-order propositions instead of being elementary propositions. For this purpose, we  take, not the one primitive proposition which Nicod has shown to be sufficient, but the two which he has shown to be equivalent to it, namely:
+\[ p \pmimp p \text{ and } p \pmimp q \pmdot \pmimp \pmdot s \pminc q \pmimp p \pminc s. \]
+We show that these are true when one, or two, or three, of the propositions \(p, q, s\) are first-order propositions. From this, the rest follows. The first of these primitive propositions, \(p \pmimp p\), gives rise to two cases, according as we substitute \(\pmall{x} \pmdot \phi x\) or \(\pmsome{x}\pmdot\phi x\) for \(p\); the second primitive proposition gives rise to 26 cases. These have to be considered one by one.
+\begin{flalign*}
+	& \pmsnb{8}{3}. \quad \; \, \pmthm \pmdott \pmall{x} \pmdot \phi x \pmdot \pmimp \pmdot \pmall{x} \pmdot \phi x & 
+\end{flalign*}
+Applying the definitions, this is \(\pmsome{x}\pmdott\pmall{x,y}\pmdot\phi x \pminc (\phi y \pminc \phi z)\), which follows from \(\pmsn{8}{11}\) by \(\pmsn{8}{13}\).
+\begin{flalign*}
+	& \pmsnb{8}{31}. \quad \pmthm \pmdott \pmsome{x} \pmdot \phi x \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x & 
+\end{flalign*}
+Applying the definitions, this is \(\pmall{x}\pmdott\pmsome{x,y}\pmdot\phi x \pminc (\phi y \pminc \phi z)\). This is \(\pmsn{8}{1}\).
+
+This completes the proof of \(p \pmimp p\). %\index{Id}
+\begin{flalign*}
+	& \pmsnb{8}{32}. \quad \pmthm \pmdottt \pmall{x} \pmdot \phi x \pmdot \pmimp \pmdot q \pmdott \pmimp \pmdott s \pminc q \pmdot \pmimp \pmdot \{\pmall{x} \pmdot \phi x\} \pminc s & 
+\end{flalign*}
+\pageSp{641}{391} Putting \(p \pmdot \pmid \pmdot \pmall{x} \pmdot \phi x\), the proposition to be proved is 
+\[ (p \pminc \pmnot q) \pminc \pmnot \{(s \pminc q) \pminc \pmnot(p \pminc s)\}.\]
+By the definitions,
+\begin{flalign*}
+	&& p \pminc \pmnot q \pmdot {} & \pmid \pmdot \pmsome{a} \pmdot \phi a \pminc (q \pminc q), & (1) \\
+	&& p \pminc s \pmdot {} & \pmid \pmdot \pmsome{x} \pmdot \phi x \pminc s, & \\
+	&& \pmnot(p \pminc s) \pmdot {} & \pmid \pmdot \pmall{x,y} \pmdot (\phi x \pminc s) \pminc (\phi y \pminc s), & \\
+	&& (s \pminc q) \pminc \pmnot(p \pminc s) \pmdot {} & \pmid \pmdot \pmsome{x,y} \pmdot (s \pminc q) \pminc \{(\phi x \pminc s) \pminc (\phi y \pminc s)\}. & \\
+	& \text{Put} & f(x,y) \pmdot {} & \pmid \pmdot (s \pminc q) \pminc \{(\phi x \pminc s) \pminc (\phi y \pminc s)\}. & \\
+	& \text{Then} & \pmnot(s \pminc q) \pminc \pmnot(p \pminc s) \pmdot {} & \pmid \pmdot  \pmall{x,y,x',y'} \pmdot f(x,y) \pminc f(x',y'). & (2)
+\end{flalign*}
+By (1) and (2), the proposition to be proved is
+\[ \pmall{a} \pmdott \pmsome{x,y,x',y'} \pmdot \{\phi a \pminc (q \pminc q)\} \pminc \{f(x,y) \pminc f(x',y')\}. \]
+
+Putting \(x = y = x' = y' = a\), the matrix of this proposition reduces to
+\[ \phi a \pmimp q \pmdot \pmimp \pmdot s \pminc q \pmimp \phi a \pminc s,\]
+which is our primitive proposition with \(\phi a\) substituted for \(p\) and is therefore true. Hence the proposition follows by \(\pmsn{8}{1}\).
+
+In what follows, the reduction of the proposition to be proved to a matrix and prefix, by means of the definitions, proceeds always by the same method, and the steps will usually be omitted.
+\begin{flalign*}
+	& \pmsnb{8}{321}. \;\, \pmthm \pmdottt \pmsome{x} \pmdot \phi x \pmdot \pmimp \pmdot q \pmdott \pmimp \pmdott s \pminc q \pmdot \pmimp \pmdot \{\pmsome{x} \pmdot \phi x\} \pminc s & 
+\end{flalign*}
+We obtain the same matrix as in \(\pmsn{8}{32}\), but the opposite prefix, \ie the
+prefix is
+\[ \pmall{x, y, x', y'} \pmdott \pmsome{a}. \]
+The matrix is equivalent to
+\[ \phi a \pmimp q \pmdot \pmimp \pmdott q \pmimp \pmnot s \pmdot \pmimp \pmdot \phi x \pmimp \pmnot s \pmand \phi y \pmimp \pmnot s \pmand \phi x' \pmimp \pmnot s \pmand \phi y' \pmimp \pmnot s. \]
+Calling this \(fa\), we have to prove \(\pmsome{a}\pmdot fa\), for any \(x, y, x', y'\). We have 
+\[ \phi a \pmand \pmnot q \pmdot \pmimp \pmdot fa.\]
+\begin{flalign*}
+	&\text{Also} & \phi a \pmand q \pmdot {} & \pmimp \pmdottt fa \pmdot \pmiff \pmdott \pmnot s \pmdot \pmimp \pmdot \phi x \pmimp \pmnot s \pmand \phi y \pmimp \pmnot s \pmand \phi x' \pmimp \pmnot s \pmand \phi y' \pmimp \pmnot s \pmdottt & \\
+	&& & \pmimp \pmdottt fa. &
+\end{flalign*}
+\begin{flalign*}
+&\text{Hence} &  \phi a \pmdot \pmimp \pmdot fa. & \\
+&\text{Hence by } \pmsnn{8}{1}{24} & & \phi x \pmdot \pmimp \pmdot \pmsome{a} \pmdot fa. &
+\end{flalign*}
+and similarly for \(\phi y, \phi x', \phi y'\). Hence by \(\pmsn{8}{261}\)
+\begin{flalign*}
+	&& & \phi x \pmor \phi y \pmor \phi x' \pmor \phi y' \pmdot \pmimp \pmdot \pmsome{a} \pmdot fa. & \\
+	& \text{Also} & & \pmnot \phi x \pmand \pmnot \phi y \pmand \pmnot \phi x' \pmand \pmnot \phi y' \pmdot \pmimp \pmdot fa \pmdot & \\
+	&&  & [\pmsnn{8}{1}{24}]  \qquad \qquad \qquad \qquad \pmimp \pmdot \pmsome{a} \pmdot fa. &
+\end{flalign*}
+Hence by \(\pmsn{8}{28}\)
+\[ \phi x \pmor \phi y \pmor \phi x' \pmor \phi y' \pmor \pmnot \phi x \pmand \pmnot \phi y \pmand \pmnot \phi x' \pmand \pmnot \phi y' \pmdott \pmimp \pmdot \pmsome{a} \pmdot fa.  \]
+Hence, by \(\pmsn{8}{12}\), \(\pmsome{a} \pmdot fa\), which was to be proved.
+\pageSp{642}{392} \begin{flalign*}
+	& \pmsnb{8}{332}. \;\,  \pmthm \pmdottt p \pmdot \pmimp \pmdot \pmall{x} \pmdot \psi x \pmdott \pmimp \pmdott s \pminc \{\pmall{x} \pmdot \psi x\} \pmdot \pmimp \pmdot p \pminc s & 
+\end{flalign*}
+\pmdemi
+\begin{flalign*}
+	&\text{Put}& & fy \pmdot \pmid \pmdot (s \pminc \psi y) \pminc \{(p \pminc s) \pminc (p \pminc s)\} &
+\end{flalign*}
+Then the proposition to be proved is
+\[ \pmall{y, y'} \pmdott \pmsome{b,c} \pmdot \{p \pminc (\psi b \pminc \psi c)\} \pminc (fy \pminc fy').\]
+The matrix here is equivalent to
+\[ p \pmdot \pmimp \pmdot \psi b \pmand \psi c \pmdott \pmimp \pmdott s \pminc \psi y \pmdot \pmimp \pmdot p \pminc s  \pmandd s \pminc \psi y' \pmdot \pmimp \pmdot p \pminc s.\]
+Putting \(b \pmid y \pmand c \pmid y'\), this follows at once from the primitive proposition, which gives
+\begin{flalign*}
+	&& p \pmimp \psi y \pmdot \pmimp \pmdott {} & s \pminc \psi y \pmdot \pmimp \pmdot p \pminc s, &\\
+	&& p \pmimp \psi y' \pmdot \pmimp \pmdott {} & s \pminc \psi y' \pmdot \pmimp \pmdot p \pminc s. &
+\end{flalign*}
+Hence the proposition.
+\begin{flalign*}
+	& \pmsnb{8}{323}. \;\, \pmthm \pmdottt p \pmdot \pmimp \pmdot \pmsome{x} \pmdot \psi x \pmdott \pmimp \pmdott s \pminc \{\pmsome{x} \pmdot \psi x\} \pmdot \pmimp \pmdot p\pminc s & 
+\end{flalign*}
+We have the same matrix as in \(\pmsn{8}{322}\), but the opposite prefix, \ie
+\[ \pmall{b,c} \pmdott \pmsome{y,y'}. \]
+Putting \(y \pmid b \pmand y' \pmid c\), the matrix is satisfied, as in \(\pmsn{8}{322}\).
+\begin{flalign*}
+	& \pmsnb{8}{324}. \;\, \pmthm \pmdottt p \pmimp q \pmdot \pmimp \pmdott \{\pmall{x} \pmdot \chi x\} \pminc q \pmdot \pmimp \pmdot p \pminc \{\pmall{x} \pmdot \chi x\} & 
+\end{flalign*}
+\pmdemi 
+
+Put \(f(x,y,z) \pmdot \pmid \pmdot (\chi x \pminc q) \pminc \{(p \pminc \chi x) \pminc (p \pminc \chi x)\}\). Then the matrix is
+\[ \{p \pminc (q \pminc q) \} \pminc \{f(x,y,z) \pminc f(x',y',z')\}\]
+and the prefix is \(\pmall{x,x'} \pmdott \pmsome{y,z,y',z'}\). Putting
+\[ y \pmid z \pmid x \pmand y' \pmid z' \pmid x', \]
+the matrix is equivalent to
+\[p \pmimp q \pmdot \pmimp \pmdott \{\pmsome{x} \pmdot \chi x\} \pminc q \pmdot \pmimp \pmdot p \pminc \{\pmsome{x} \pmdot \chi x\}, \]
+which follows from our primitive proposition by Comp. %\index{Comp}
+\begin{flalign*}
+	& \pmsnb{8}{325}. \;\, \pmthm \pmdottt p \pmimp q \pmdot \pmimp \pmdott \{\pmsome{x} \pmdot \chi x\} \pminc q \pmdot \pmimp \pmdot p \pminc \{\pmsome{x} \pmdot \chi x\} & 
+\end{flalign*}
+\pmdemi 
+
+The matrix is the same as in \(\pmsn{8}{324}\), but the prefix is the opposite, \ie 
+\[ \pmall{y,z,y',z'} \pmdott \pmsome{x,x'} \]
+Calling the matrix \(M(x,x')\), we have, if \(\theta w \pmdot \pmiff_w \pmdot \pmnot \chi w\),
+\[ M(x,x') \pmdot \pmiff \pmdotttt p \pmimp q \pmdot \pmimp \pmdottt q \pmimp \theta x \pmdot \pmimp \pmdott p \pmdot \pmimp \pmdot \theta y \pmand \theta z \pmanddd q \pmimp \theta x' \pmdot \pmimp \pmdott p \pmdot \pmimp \pmdot \theta y' \pmand \theta z'. \]
+\begin{flalign*}
+	& \text{Hence} & & \theta y \pmand \theta z \pmand \theta y' \pmand \theta z' \pmdot \pmimp \pmdot M(x,x') \pmdot \pmimp \pmdot \pmsome{x,x'} \pmdot M(x,x') & (1)
+\end{flalign*}
+But \(\pmnot \theta x \pmand \pmnot \theta x' \pmdot \pmimp \pmdot M(x,x')\). Hence
+\begin{flalign*}
+	&& && &  \theta y \pmand \theta z \pmand \theta y' \pmand \theta z' \pmdot \pmimp \pmdot M(x,x') \pmdot \pmimp \pmdot \pmsome{x,x'} \pmdot M(x,x') & (2)
+\end{flalign*}
+Similarly with \(\theta y, \theta x', \theta y'\). Hence the result follows as in \(\pmsn{8}{321}\).
+
+This ends the cases in which only one of \(p, q, r\) in
+\[ p \pmimp q \pmdot \pmimp \pmdott s \pminc q \pmdot \pmimp \pmdot p \pminc s \]
+is of the first order instead of being elementary. We have now to deal with the cases in which two, but not three, are of the first order.
+\pageSp{643}{393} \begin{flalign*}
+	& \pmsnb{8}{34}. \, \pmthm \pmdottt \pmall{x} \pmdot \phi x \pmdot \pmimp \pmdot \pmall{x} \pmdot \psi x \pmdott \pmimp \pmdott s \pminc \{\pmall{x} \pmdot \psi x\} \pmdot \pmimp \pmdot \{\pmall{x} \pmdot \phi x\} \pminc s & 
+\end{flalign*}
+Putting \(f(x,y,z) \pmdot \pmid \pmdot (s \pminc \psi x) \pminc \{(\phi y \pminc s) \pminc 
+(\phi z \pminc s)\}\), the matrix is
+\[ \{\phi a \pminc (\psi b \pminc \psi c)\} \pminc \{f(x,y,z) \pminc f(x',y',z')\} \]
+and the prefix is \(\pmall{a,x,x'} \pmdott \pmsome{b,c,y,z,y'z'}\). The matrix is satisfied by 
+\[ b \pmid x \pmand c \pmid x' \pmand y \pmid z \pmid y' \pmid z' \pmid a, \]
+in which case it is equivalent to
+\[ \phi a \pmdot \pmimp \pmdot \psi x \pmand \psi x' \pmdott \pmimp \pmdottt \psi x \pmimp \pmnot s \pmdot \pmimp \pmdot \phi a \pmimp \pmnot s \pmandd \psi x' \pmimp \pmnot s \pmdot \pmimp \pmdot \phi a \pmimp \pmnot s.\]
+Hence Prop.
+
+We have the same matrix in the three following propositions, only with different prefixes.
+\begin{flalign*}
+	& \pmsnb{8}{331}. \, \pmthm \pmdottt \pmall{x} \pmdot \phi x \pmdot \pmimp \pmdot \pmsome{x} \pmdot \psi x \pmdott \pmimp \pmdott s \pminc \{\pmsome{x} \pmdot \psi x\} \pmdot \pmimp \pmdot \{\pmall{x} \pmdot \phi x\} \pminc s & 
+\end{flalign*}
+Here the prefix to the matrix is \(\pmall{a,b,c} \pmdott \pmsome{x,y,z,x',y',z'}\). The matrix is satisfied by \(x \pmid b \pmand x' \pmid c \pmand y \pmid z \pmid y' \pmid z' \pmid a\). Hence Prop.
+\begin{flalign*}
+	& \pmsnb{8}{332}. \, \pmthm \pmdottt \pmsome{x} \pmdot \phi x \pmdot \pmimp \pmdot \pmall{x} \pmdot \psi x \pmdott \pmimp \pmdott s \pminc \{\pmall{x} \pmdot \psi x\} \pmdot \pmimp \pmdot \{\pmsome{x} \pmdot \phi x\} \pminc s & 
+\end{flalign*}
+The prefix here is \(\pmall{x,y,z,x',y',z'} \pmdott \pmsome{a,b,c}\). Writing \(r\) for \(\pmnot s\), the matrix becomes
+\[ \phi a \pmdot \pmimp \pmdot \psi b \pmand \psi c\pmdott \pmimp \pmdottt \psi x \pmimp r \pmdot \pmimp \pmdot \phi y \pmor \phi z \pmimp r \pmandd \psi x' \pmimp r \pmdot \pmimp \pmdot \phi y' \pmor \phi z' \pmimp r. \]
+(Here, only \(a, b, c\) can be chosen arbitrarily.) This is true if \(\phi y\), \(\phi z\), \(\phi y'\), \(\phi z'\) are all false. Suppose \(\phi y\) is true. Put \(a \pmid  y\). Then if \(\psi b\) or \(\psi c\) is false, \(\phi a \pmdot \pmimp \pmdot \psi b \pmand \psi c\) is false, and the matrix is true. Therefore if \(\psi x\) is false, put \(b \pmid c \pmid x\); if \(\psi x'\) is false, put \(b \pmid c \pmid x'\). If \(\psi x\) and \(\psi x'\) are both true, putting \(a \pmid y \pmand b \pmid c \pmid x\), the matrix becomes equivalent to
+\[ r \pmdot \pmimp \pmdot \phi y \pmor \phi z \pmimp r \pmandd r \pmdot \pmimp \pmdot \phi y' \pmor \phi z' \pmimp r, \]
+which is true. Hence if \(\phi y\) is true, the matrix can be made true. Similarly for \(z\), \(y'\), \(z'\). This exhausts possible cases. Hence Prop, by \(\pmsn{8}{28}\).
+\begin{flalign*}
+& \pmsnb{8}{333}. \, \pmthm \pmdottt \pmsome{x} \pmdot \phi x \pmdot \pmimp \pmdot \pmsome{x} \pmdot \psi x \pmdott \pmimp \pmdott s \pminc \{\pmsome{x} \pmdot \psi x\} \pmdot \pmimp \pmdot \{\pmsome{x} \pmdot \phi x\} \pminc s & 
+\end{flalign*}
+\pmdemi
+
+The matrix is as before, and the prefix (after using \(\pmsn{8}{13}\)) is
+\[ \pmall{b,c,y,z,y',z'} \pmdott \pmsome{a, x, x'}. \]
+Call the marix \(M(a,x,x')\). Then
+\begin{flalign*}
+	&& & \pmthm \pmdott \psi b \pmdot \pmimp \pmdot M(a,b,b) \pmdot \pmimp \pmdot \pmsome{a,x,x'} \pmdot M(a,x,x') & (1) \\
+	&& & \pmthm \pmdott \psi c \pmdot \pmimp \pmdot M(a,c,c) \pmdot \pmimp \pmdot \pmsome{a,x,x'} \pmdot M(a,x,x') & (2) \\
+	&& & \pmthm \pmdott \pmnot \psi b \pmand \pmnot \psi c \pmand \phi y \pmdot \pmimp \pmdot M(y,b,c) \pmdot \pmimp \pmdot \pmsome{a,x,x'} \pmdot M(a,x,x') & (3) \\
+	&& & (1) \pmand (2) \pmand (3) \pmdot \pmithm \pmdott \phi y \pmdot \pmimp \pmdot \pmsome{a,x,x'} \pmdot M(a,x,x') \text{ [using } \pmsn{8}{28}] & (4) 
+\end{flalign*}
+Similarly for \(\phi y'\), \(\phi z\), \(\phi z'\). Hence by \(\pmsn{8}{28}\)
+\begin{flalign*}
+	&& & \pmthm \pmdott \phi y \pmor \phi y' \pmor \phi z \pmor \phi z' \pmdot \pmimp \pmdot \pmsome{a,x,x'} \pmdot M(a,x,x') & (5) \\
+	& \text{But} & & \pmthm \pmdott \pmnot \phi y \pmand \pmnot \phi y' \pmand \pmnot \phi z \pmand \pmnot \phi z' \pmdot \pmimp \pmdott \phi y \pmor \phi z \pmimp r \pmand \phi y' \pmor \phi z' \pmimp r \pmdott & \\
+	&& & \; \; \, \qquad \qquad \qquad \qquad \qquad \qquad \pmimp \pmdott M(a,x,x') & \\
+	&& &  [\pmsn{8}{1}] \, \qquad \qquad \qquad \qquad \qquad \pmimp \pmdott \pmsome{a,x,x'} \pmdot M(a,x,x') & (6) \\
+	&& & (5) \pmand (6) \pmand \pmsn{8}{28} \pmdot \pmithm \pmdot \pmsome{a,x,x'} \pmdot M(a,x,x') \pmdot \pmithm \pmdot \pmprop & 
+\end{flalign*}
+\pageSp{644}{394} This ends the cases in which \(p\) and \(q\) but not \(s\) contain apparent variables. We take next the four cases in which \(p\) and \(s\), but not \(q\), contain apparent variables.
+\begin{flalign*}
+	& \pmsnb{8}{34}. \, \pmthm \pmdottt \pmall{x} \pmdot \phi x \pmdot \pmimp \pmdot q \pmdott \pmimp \pmdott \{\pmall{x} \pmdot \chi x\} \pminc q \pmdot \pmimp \pmdot \{\pmall{x} \pmdot \phi x\} \pminc \{\pmall{x} \pmdot \chi x\} & 
+\end{flalign*}
+Putting \(f(x,y,z,u,v) \pmdot \pmid \pmdot (\chi x \pminc q) \pminc \{(\phi y \pminc \chi z) \pminc (\phi u) \pminc \chi v)\}\), the matrix is
+\[ (\phi a \pminc \pmnot q) \pminc \{f(x,y,z,u,v) \pminc f(x',y',z',u',v')\}.\]
+(This is also the matrix of the three following propositions.)
+
+The prefix is \(\pmall{a,x,x'} \pmdott \pmsome{y,z,u,v,y',z',u',v'}\).
+
+The matrix is equivalent to
+\[ \phi a \pmimp q \pmdot \pmimp \pmdot f(x,y,z,u,v) \pmand f(x',y'z',u',v'). \]
+Putting \(y \pmid u \pmid y' \pmid u' \pmid a \pmand z \pmid v \pmid x \pmand z' \pmid v' \pmid x'\), the matrix is satisfied. Hence Prop.
+\begin{flalign*}
+	& \text{and} & f(x,y,z,u,v) \pmdot {} & \pmiff \pmdott \chi x \pminc q \pmdot \pmimp \pmdot \phi y \pminc \chi z \pmand \phi u \pminc \chi v \pmdott & \\
+	&& & \pmiff \pmdott q \pmimp \pmnot \chi x \pmdot \pmimp \pmdot \phi y \pmimp \pmnot \chi z \pmand \phi u \pmimp \pmnot \chi v. &
+\end{flalign*}
+\begin{flalign*}
+& \pmsnb{8}{341}. \, \pmthm \pmdottt \pmall{x} \pmdot \phi x \pmdot \pmimp \pmdot q \pmdott \pmimp \pmdott \{\pmsome{x} \pmdot \chi x\} \pminc q \pmdot \pmimp \pmdot \{\pmall{x} \pmdot \phi x\} \pminc \{\pmsome{x} \pmdot \chi x\} & 
+\end{flalign*}
+Matrix as in \(\pmsn{8}{34}\). Prefix \(\pmall{a,z,v,z',v'} \pmdott \pmsome{x,y,u,x',y',u'}\). 
+
+Matrix is equivalent to
+\begin{flalign*}
+	\phi a \pmimp q \pmdot \pmimp \pmdottt q \pmimp \pmnot & \chi x \pmdot \pmimp \pmdot \phi y \pmimp \pmnot \chi z \pmand \phi u \pmimp \pmnot \chi v \pmandd & \\
+	& q \pmimp \pmnot \chi x' \pmdot \pmimp \pmdot \phi y' \pmimp \pmnot \chi z' \pmand \phi u' \pmimp \pmnot \chi v' & 
+\end{flalign*}
+If \(\phi a\) is false, this becomes true by putting \(y \pmid u \pmid y' \pmid u' \pmid a\). If \(\phi a\) is true the matrix is true if \(q\) is false. Suppose \(q\) is true. Then the matrix is equivalent to
+\[ \pmnot \chi x \pmdot \pmimp \pmdot \phi y \pmimp \pmnot \chi z \pmand \phi u \pmimp \pmnot \chi v \pmandd \pmnot \chi x' \pmdot \pmimp \pmdot \phi y' \pmimp \pmnot \chi z' \pmand \phi u' \pmimp \pmnot \chi v'. \]
+Thgis is true if \(\chi z\), \(\chi v\), \(\chi z'\), \(\chi v'\) are false. If one of them, say \(\chi z\), is true, put \(x \pmid x' \pmid z\), and the matrix is true. This exhausts possible cases. Hence Prop, by \(\pmsn{8}{28}\).
+\begin{flalign*}
+& \pmsnb{8}{342}. \, \pmthm \pmdottt \pmsome{x} \pmdot \phi x \pmdot \pmimp \pmdot q \pmdott \pmimp \pmdott \{\pmall{x} \pmdot \chi x\} \pminc q \pmdot \pmimp \pmdot \{\pmsome{x} \pmdot \phi x\} \pminc \{\pmall{x} \pmdot \chi x\} & 
+\end{flalign*}
+Matrix as before. Prefix (after using \(\pmsn{8}{13}\)) \(\pmall{x,y,u,x',y',u'} \pmdott \pmsome{a,z,v,z',v'}\). 
+
+Call the matrix \(M(a,z,v,z'v')\). Then
+\begin{flalign*}
+	&& \pmthm \pmdott \chi x \pmdot {} & \pmimp \pmdot M(a,x,x,x,x) & (1) \\
+	 && \pmthm \pmdott \chi x' \pmdot {} & \pmimp \pmdot M(a,x',x',x',x') & (2) \\
+	 && \pmthm \pmdott q \pmand \chi x \pmand \chi x' \pmdot {} & \pmimp \pmdot  \pmnot(q \pmimp \pmnot \chi x) \pmand \pmnot(q \pmimp \pmnot \chi x') \pmdot & \\
+	&& & \pmimp \pmdot M(a,z,v,z',v') & (3) \\
+	 && \pmthm \pmdott \pmnot q \pmand \phi y \pmdot {} & \pmimp \pmdot \pmnot(\phi y \pmimp q) \pmdot & \\
+	 && & \pmimp \pmdot M(a,z,v,z',v') & (4) 
+\end{flalign*}
+Similarly if \(\pmnot q \pmand \phi u\) or \(\pmnot q \pmand \phi y'\) or \(\pmnot q \pmand \phi u'\). Hence by \(\pmsnn{8}{1}{28}\)
+\begin{flalign*}
+	\pmthm \pmdott \pmnot q \pmand \phi y \pmor \phi u \pmor \phi y' \pmor \phi u' \pmdot {} & \pmimp \pmdot \pmsome{a,z,v,z',v'} \pmdot M(a,z,v,z',v') & (5) \\
+	\pmthm \pmdott \pmnot \phi y \pmand \pmnot \phi u \pmand \pmnot \phi y' \pmand \pmnot \phi u' \pmdot {} & \pmimp \pmdot \phi y \pmimp \pmnot \chi z \pmand \phi u \pmimp \pmnot \chi v \pmand & \\
+	& \qquad \phi y' \pmimp \pmnot \chi z' \pmand \phi u' \pmimp \pmnot \chi v' & \\
+	& \pmimp \pmdot M(a,z,v,z',v') & (6) \\
+	(5) \pmand (6) \pmdot \pmithm \pmdott \pmnot q \pmdot {} \qquad \qquad & \pmimp \pmdot M(a,z,v,z',v') & (7) \\
+	& \pmthm \pmdot (1) \pmand (2) \pmand (3) \pmand (7) \pmdot \pmithm \pmdot \pmprop &
+\end{flalign*}
+\pageSp{645}{395} \begin{flalign*}
+	& \pmsnb{8}{343}. \, \pmthm \pmdottt \pmsome{x} \pmdot \phi x \pmdot \pmimp \pmdot q \pmdott \pmimp \pmdott \{\pmsome{x} \pmdot \chi x\} \pminc q \pmdot \pmimp \pmdot \{\pmsome{x} \pmdot \phi x\} \pminc \{\pmsome{x} \pmdot \chi x\} & 
+\end{flalign*}
+Prefix to matrix is \(\pmall{y,z,u,v,y',z',u',v'} \pmdott \pmsome{a,x,x'}\).
+\begin{flalign*}
+	& \text{Call the matrix} & & f(a,x,x') & \\
+	& \text{It is true if} & & \pmnot \chi z \pmand \pmnot \chi v \pmand \pmnot \chi z' \pmand \pmnot \chi v' & (1) \\
+	& \text{Also} & & \chi z \pmand q \pmdot \pmimp \pmdot f(a,z,z) \pmdot \pmimp \pmdot \pmsome{a,x,x'} \pmdot f(a,x,x') & (2) \\
+	& \text{Similarly if we have} & & \chi v \pmand q \text{ or } \chi z' \pmand q \text{ or } \chi v' \pmand q & (3) 
+\end{flalign*}
+From \((1) \pmand (2) \pmand (3)\), by \(\pmsn{8}{28}\), \(q \pmdot \pmimp \pmdot \pmsome{a,x,x'} \pmdot f(a,x,x')\).
+
+Now \(\phi a \pmand \pmnot q \pmdot \pmimp \pmdot f(a,x,x')\). Hence
+\[ \phi y \pmand \pmnot q \pmdot \pmimp \pmdot f(y,x,x') \pmdot \pmimp \pmdot \pmsome{a,x,x'} \pmdot f(a,x,x')\]
+Similarly for \(\phi z \pmand \pmnot q\), \(\phi y' \pmand \pmnot q\), \(\phi z' \pmand \pmnot q\). Hence
+\begin{flalign*}
+	&& & \phi y \pmor \phi z \pmor \phi y' \pmor \phi z' \pmand \pmnot q \pmdot \pmimp \pmdot \pmsome{a,x,x'} \pmdot f(a,x,x') & (5) \\
+	& \text{But} & & \pmnot \phi y \pmand \pmnot \phi z \pmand \pmnot \phi y' \pmand \pmnot \phi z' \pmdot \pmimp \pmdot f(a,x,x') & (6) \\
+	& \text{By (5) and (6),} & & \pmnot q \pmdot \pmimp \pmdot \pmsome{a,x,x'} \pmdot f(a,x,x') & (7)  
+\end{flalign*}
+\(\pmthm \pmdot (4) \pmand (7) \pmand \pmsn{8}{28} \pmdot \pmithm \pmdot \pmprop\)
+
+In the next four propositions, \(q\) and \(r\) are replaced by propositions containing apparent variables, while \(p\) remains elementary.
+\begin{flalign*}
+	& \pmsnb{8}{35}. \quad \pmthm \pmdottt p \pmdot \pmimp \pmdot \pmall{x} \pmdot \psi x \pmdott \pmimp \pmdott \{\pmall{x} \pmdot \chi x\} \pminc \{\pmall{x} \pmdot \psi x\} \pmdot \pmimp \pmdot p \pminc \{\pmall{x} \pmdot \chi x\} & 
+\end{flalign*}
+Putting \(q \pmdot \pmid \pmdot \pmall{x} \pmdot \psi x\), \(s \pmdot \pmid \pmdot \pmall{x} \pmdot \psi x\), the proposition is
+\[ (p \pminc \pmnot q) \pminc \pmnot \{(s \pminc q) \pminc \pmnot (p \pminc s)\}.\]
+We have by the definitions.
+\begin{flalign*}
+	&& \pmnot q \pmdot {} & \pmid \pmdot \pmsome{b,c} \pmdot \psi b \pminc \psi c, & \\
+	&& p \pminc \pmnot q \pmdot {} & \pmid \pmdot \pmall{b,c} \pmdot p \pminc (\psi b \pminc \psi c), & \\
+	&& s \pminc q \pmdot {} & \pmid \pmdot \pmsome{x,y} \pmdot \chi y \pminc \psi x), & \\
+	&& p \pminc s \pmdot {} & \pmid \pmdot \pmsome{z} \pmdot p \pminc \chi z, & \\
+	&& \pmnot(p \pminc s) \pmdot {} & \pmid \pmdot \pmall{z,w} \pmdot (p \pminc \chi z) \pminc (p \pminc \chi w), & \\
+	&& (s \pminc q) \pminc \pmnot(p \pminc s) \pmdot {} & \pmid \pmdott \pmall{x,y} \pmdot \pmsome{z,w} \pmdot & \\
+	&& & (\chi y \pminc \psi x) \pminc \{(p \pminc \chi z) \pminc (p \pminc \chi w)\}. & \\
+	&\text{Put}& f(x,y,z,w) \pmdot {} & \pmid \pmdot (\chi y \pminc \psi x) \pminc \{(p \pminc \chi z) \pminc (p \pminc \chi w)\},. & \\
+	&\text{Then}& \pmnot\{(s \pminc q) \pminc \pmnot(p \pminc s)\} \pmdot {} & \pmid \pmdott \pmsome{x,y,x',y'} \pmdott \pmall{z,w,z',w'} \pmdot & \\
+	&& & f(x,y,z,w) \pminc f(x',y',z',w'), & \\
+	&& (p\pminc \pmnot q) \pminc \pmnot\{(s \pminc q) \pminc \pmnot(p \pminc s)\} \pmdot {} & \pmid \pmdott \pmall{x,y,x',y'} \pmdott \pmsome{b,c,z,w,z',w'} \pmdot & \\
+	&\multispan3{$\qquad \qquad \qquad \qquad \qquad \qquad \{p \pminc (\psi b \pminc \psi c)\} \pminc \{f(x,y,z,w) \pminc f(x',y',z',w')\}$}. &
+\end{flalign*}
+Writing \(\theta\pmhat{x}\) for \(\pmnot \chi\pmhat{x}\), the matrix is equivalent to
+\[ p \pmdot \pmimp \pmdot \psi b \pmand \psi c \pmdott \pmimp \pmdottt \psi x \pmimp \theta y \pmdot \pmimp \pmdott p \pmdot \pmimp \pmdot \theta z \pmand \theta w \pmanddd \psi x' \pmimp \theta y' \pmdot \pmimp \pmdott p \pmdot \pmimp \pmdot \theta z' \pmand \theta w'. \]
+This is satisfied by putting \(b \pmid x \pmand c \pmid x' \pmand z \pmid w \pmid y \pmand z' \pmid w' \pmid y'\). Hence Prop.
+
+The same matrix appears in the next three propositions; only the prefix changes.
+\begin{flalign*}
+	& \pmsnb{8}{351}. \; \, \pmthm \pmdottt p \pmdot \pmimp \pmdot \pmall{x} \pmdot \psi x \pmdott \pmimp \pmdott \{\pmsome{x} \pmdot \chi x\} \pminc \{\pmall{x} \pmdot \psi x\} \pmdot \pmimp \pmdot p \pminc \{\pmsome{x} \pmdot \chi x\} & 
+\end{flalign*}
+Same matrix as in \(\pmsn{8}{35}\), but prefix \(\pmall{x,z,w,x',z',w'} \pmdott \pmsome{b,c,y,y'}\).
+
+Matrix is true if \(\theta z \pmand \theta w \pmand \theta z' \pmand \theta w'\).
+
+Assume \(\pmnot \theta z\), and put \(y \pmid y' \pmid z \pmand b \pmid x \pmand c \pmid x'\).
+
+\pageSp{646}{396} We now have \(\psi x \pmimp \theta y \pmdot \pmimp \pmdot \pmnot \psi x\) and \(p \pmdot \pmimp \pmdot \theta z \pmand \theta w \pmdott \pmiff \pmdot \pmnot p\). Hence matrix is equivalent to
+\[ p \pmdot \pmimp \pmdot \psi x \pmand \psi x' \pmdott \pmimp \pmdottt \pmnot \psi x \pmdot \pmimp \pmdot \pmnot p \pmanddd \pmnot \psi x' \pmdot \pmimp \pmdott p \pmdot \pmimp \pmdot \theta z' \pmand \theta w', \]
+which is true. Similarly if \(\pmnot \theta w \pmor \pmnot \theta z' \pmor \pmnot \theta w'\). Hence Prop, by \(\pmsnn{8}{1}{28}\).
+\begin{flalign*}
+	& \pmsnb{8}{352}. \; \, \pmthm \pmdottt p \pmdot \pmimp \pmdot \pmsome{x} \pmdot \psi x \pmdott \pmimp \pmdott \{\pmall{x} \pmdot \chi x\} \pminc \{\pmsome{x} \pmdot \psi x\} \pmdot \pmimp \pmdot p \pminc \{\pmall{x} \pmdot \chi x\} & 
+\end{flalign*}
+Same matrix, but prefix \(\pmall{b,c,y,y'} \pmdott \pmsome{x,z,w,x',z',w'}\).
+
+Satisfied by \(x \pmid b \pmand x' \pmid c \pmand z \pmid w \pmid y \pmand z' \pmid w' \pmid y'\). Hence Prop.
+\begin{flalign*}
+	& \pmsnb{8}{353}. \; \, \pmthm \pmdottt p \pmdot \pmimp \pmdot \pmsome{x} \pmdot \psi x \pmdott \pmimp \pmdott \{\pmsome{x} \pmdot \chi x\} \pminc \{\pmsome{x} \pmdot \psi x\} \pmdot \pmimp \pmdot p \pminc \{\pmsome{x} \pmdot \chi x\} & 
+\end{flalign*}
+Same matrix, with prefix \(\pmall{b,c,z,w,z',w'} \pmdott \pmsome{x,y,x',y'}\).
+
+If \(\psi b\) is true and \(\theta z\)  false, matrix is satisfied by \(x \pmid x' \pmid b \pmand y \pmid y' \pmid z\), because these values make \(\psi x \pmimp \theta y\) and \(\) false. Similarly if \(\psi b\) is true and \(\theta w\) or \(\theta z'\) or \(\theta w'\) is false, and if \(\psi c\) is true and \(\) is false. It remains to consider \(\pmnot \psi b \pmand \pmnot \psi c \pmdott \pmor \pmdott \theta z \pmand \theta w \pmand \theta z' \pmand \theta w'\). %Note: ``smilarly'' in paperback edition
+
+The second alternative makes the matrix true, because it gives
+\[p \pmdot \pmimp \pmdot \theta z \pmand \theta w \pmandd p \pmdot \pmimp \pmdot \theta z' \pmand \theta w'.\] 
+The first alternative gives
+\[ p \pmdot \pmimp \pmdot \psi b \pmand \psi c \pmdott \pmimp \pmdott \pmnot p \pmdott \pmimp \pmdott p \pmdot \pmimp \pmdot \theta z \pmand \theta w \pmandd p \pmdot \pmimp \pmdot \theta z' \pmand \theta w', \]
+so that again the matrix is true. Hence Prop.
+
+This finishes the cases in which one or two of the three constituents of \(p \pmimp q \pmdot \pmimp \pmdot s \pminc q \pmimp p \pminc s\) remain elementary. It remains to consider the eight cases in which none remains elementary. These all have the same matrix.
+\begin{flalign*}
+	\pmsnb{8}{36}. \quad \pmthm \pmdottt \pmall{x} \pmdot {} & \phi x \pmdot \pmimp \pmdot \pmall{x} \pmdot \psi x \pmdott \pmimp \pmdott {} & \\ 
+	& \{\pmall{x} \pmdot \chi x\} \pminc \{\pmall{x} \pmdot \psi x\} \pmdot \pmimp \pmdot \{\pmall{x} \pmdot \phi x\} \pminc \{\pmall{x} \pmdot \chi x\}  &
+\end{flalign*}
+Putting \(p \pmdot \pmid \pmdot \pmall{x} \pmdot \phi x\), \(q \pmdot \pmid \pmdot \pmall{x} \pmdot \psi x\), \(s \pmdot \pmid \pmdot \pmall{x} \pmdot \chi x\), we have
+\begin{flalign*}
+	\pmnot q \pmdot {} & \pmid \pmdot \pmsome{b,c} \pmdot \psi b \pminc \psi c, & \\
+	p \pminc \pmnot q \pmdot {} & \pmid \pmdott \pmsome{a} \pmdott \pmall{b,c} \pmdot \phi a \pminc (\psi b \pminc \psi c), & \\
+	s \pminc q \pmdot {} & \pmid \pmdot \pmsome{x,y} \pmdot \chi y \pminc \psi x, & \\
+	p \pminc s \pmdot {} & \pmid \pmdot \pmsome{z,w} \pmdot \phi z \pminc \chi w, & \\
+	\pmnot (p \pminc s) \pmdot {} & \pmid \pmdot \pmall{z,w,u,v} \pmdot (\phi z \pminc \chi w) \pminc (\phi u \pminc \chi v), & \\
+	(s \pminc q) \pminc \pmnot (p \pminc s) \pmdot {} & \pmid \pmdot \pmall{x,y} \pmdott \pmsome{z,w,u,v} \pmdot (\chi y \pminc \psi x) \pminc \{(\phi z \pminc \chi w) \pminc (\phi u \pminc \chi v)\} &
+\end{flalign*}
+Put \(f(x,y,z,w,u,v) \pmdot \pmid \pmdot (\chi y \pminc \psi x) \pminc \{(\phi z \pminc \chi w) \pminc (\phi u \pminc \chi v)\}\). Then
+\begin{flalign*}
+	\pmnot\{(s \pminc q) \pminc \pmnot(p \pminc s)\} \pmdot \pmid \pmdott {} & \pmsome{x,y,x'y'} \pmdott \pmall{z,w,u,v,z',w',u',v'} \pmdot & \\
+	& f(x,y,z,w,u,v) \pminc f(x',y',z',w',u',v'), &
+\end{flalign*}
+\begin{flalign*}
+(p \pminc \pmnot q) \pminc {} & \pmnot\{(s \pminc q) \pminc \pmnot(p \pminc s)\} \pmdot \pmid \pmdott \pmall{a,x,y,x',y'} \pmdott \pmall{b,c,z,w,u,v,z',w',u',v'} \pmdot & \\
+& \{\phi a \pminc (\psi b \pminc \psi c)\} \pminc \{f(x,y,z,w,u,v) \pminc f(x',y',z',w',u',v')\}. &
+\end{flalign*}
+Writing \(\theta\pmhat{x}\) for \(\chi\pmhat{x}\), the matrix is equivalent to
+\begin{flalign*}
+	\phi a \pmdot \pmimp \pmdot \psi b \pmand \psi c \pmdott \pmimp \pmdottt \pmdot {} & \psi x \pmimp \theta y \pmdot \pmimp \pmdot \phi z \pmimp \theta w \pmand \phi u \pmimp \theta v \pmandd & \\
+	& \psi x' \pmimp \theta y' \pmdot \pmimp \pmdot \phi z' \pmimp \theta w' \pmand \phi u' \pmimp \theta v'.
+\end{flalign*}
+This is satisfied by \(b \pmid x \pmand c \pmid x' \pmand z \pmid u \pmid z' \pmid u' \pmid a \pmand w \pmid v \pmid y \pmand w' \pmid v' \pmid y' \). Hence Prop.
+\pageSp{647}{397} \begin{flalign*}
+\pmsnb{8}{361}. \; \, \pmthm \pmdottt \pmall{x} \pmdot {} &\phi x \pmdot \pmimp \pmdot  \pmall{x} \pmdot \psi x \pmdott \pmimp \pmdott {} & \\ 
+& \{\pmsome{x} \pmdot \chi x\} \pminc \{\pmall{x} \pmdot \psi x\} \pmdot \pmimp \pmdot \{\pmall{x} \pmdot \phi x\} \pminc \{\pmsome{x} \pmdot \chi x\}  &
+\end{flalign*}
+Same matrix, but ``all'' and ``some'' are interchanged in arguments to \(\chi\), \ie in \(y, w, v, y', w', v'\). The \(\pmSome\)-variables are therefore \(b, c, y, y', z, z', u, u'\). 
+
+If \(\pmnot \phi a\), put \(z \pmid u \pmid z' \pmid u' \pmid a\), is satisfied. 
+
+If \(\phi a\) is true, matrix is true if \(\pmnot \psi b \pmor \pmnot \psi c\), \ie if \(\pmnot \psi x \pmor \pmnot \psi x'\), since \(b, c\) are arbitrary. Assume \(\psi x \pmand \psi x'\). Then matrix reduces to
+\[ \theta y \pmdot \pmimp \pmdot \phi z \pmimp \theta w \pmand \phi u \pmimp \theta v \pmandd \theta y' \pmdot \pmimp \pmdot \phi z' \pmimp \theta w' \pmand \phi u' \pmimp \theta v'. \]
+
+If \(\theta w, \theta v, \theta w', \theta v'\) are all true, this is true.
+
+If \(\pmnot \theta w\), put \(y \pmid y' \pmid w\), and matrix is satisfied. 
+
+Similarly if \(\pmnot \theta v\), \(\pmnot \theta w'\), or \(\pmnot \theta v'\). Hence Prop.
+\begin{flalign*}
+\pmsnb{8}{362}. \; \, \pmthm \pmdottt \pmall{x} \pmdot {} &\phi x \pmdot \pmimp \pmdot  \pmsome{x} \pmdot \psi x \pmdott \pmimp \pmdott {} & \\ 
+& \{\pmall{x} \pmdot \chi x\} \pminc \{\pmsome{x} \pmdot \psi x\} \pmdot \pmimp \pmdot \{\pmall{x} \pmdot \phi x\} \pminc \{\pmall{x} \pmdot \chi x\}  &
+\end{flalign*}
+Matrix as in \(\pmsn{8}{36}\). Prefix results from \(\pmsn{8}{36}\) by interchanging ``all'' and ``some'' among \(\psi\)-arguments, \ie \(b,c,x,x'\). Hence Prop results from same substitutions as in \(\pmsn{8}{36}\).
+\begin{flalign*}
+\pmsnb{8}{363}. \; \, \pmthm \pmdottt \pmall{x} \pmdot {} & \phi x \pmdot \pmimp \pmdot \pmsome{x} \pmdot \psi x \pmdott \pmimp \pmdott {} & \\ 
+& \{\pmsome{x} \pmdot \chi x\} \pminc \{\pmsome{x} \pmdot \psi x\} \pmdot \pmimp \pmdot \{\pmall{x} \pmdot \phi x\} \pminc \{\pmsome{x} \pmdot \chi x\}  &
+\end{flalign*}
+Results from interchanging ``all'' and ``some'' in \(\pmsn{8}{361}\) among \(\psi\)-arguments, viz.\ \(b,c,x,x'\). The \(\pmSome\)-variables are therefore \(x,x',y,y',z,z',u,u'\), and the proof proceeds exactly as in \(\pmsn{8}{361}\), interchanging \(x,x'\) and \(b,c\).
+\begin{flalign*}
+\pmsnb{8}{364}. \; \, \pmthm \pmdottt \pmsome{x} \pmdot {} & \phi x \pmdot \pmimp \pmdot \pmall{x} \pmdot \psi x \pmdott \pmimp \pmdott {} & \\ 
+& \{\pmall{x} \pmdot \chi x\} \pminc \{\pmall{x} \pmdot \psi x\} \pmdot \pmimp \pmdot \{\pmsome{x} \pmdot \phi x\} \pminc \{\pmall{x} \pmdot \chi x\}  &
+\end{flalign*}
+The proposition is what results from \(\pmsn{8}{36}\) by interchanging ``all'' and ``some'' in the \(\phi\)-arguments, viz.\ \(a, z, u, z, u'\). Hence the \(\pmSome\)-arguments are \(a,b,c,w,v,w',v'\). If \(\theta y\) is true, put \(w \pmid v \pmid w' \pmid v' \pmid v' \pmid y\), and the matrix is satisfied. If \(\theta y'\) is true, put  \(w \pmid v \pmid w' \pmid v' \pmid v' \pmid y'\) and the matrix is satisfied. Assume \(\pmnot \theta y \pmand \pmnot \theta y'\). The matrix is true if \(\psi x \pmimp \theta y\) and \(\psi x' \pmimp \theta y'\) are false, \ie, since \(\theta y\), \(\theta y'\) are false, if \(\psi x\) and \(\psi x'\) are true. If \(\psi x'\) is false, put \(b \pmid c \pmid x\) and \(a \pmid y\); then \(\phi a \pmdot \pmimp \pmdot \psi b \pmand \psi c\) is false, and the matrix is true. If \(\psi x'\) is false, similarly. Hence Prop.
+\begin{flalign*}
+\pmsnb{8}{365}. \; \, \pmthm \pmdottt \pmsome{x} \pmdot {} & \phi x \pmdot \pmimp \pmdot \pmall{x} \pmdot \psi x \pmdott \pmimp \pmdott {} & \\ 
+& \{\pmsome{x} \pmdot \chi x\} \pminc \{\pmall{x} \pmdot \psi x\} \pmdot \pmimp \pmdot \{\pmsome{x} \pmdot \phi x\} \pminc \{\pmsome{x} \pmdot \chi x\}  &
+\end{flalign*}
+Prop is what results from \(\pmsn{8}{364}\) by interchanging ``all'' and ``some'' in the \(\chi\)-arguments, viz.\ \(y, w, v, y', w', v'\). Hence the \(\pmSome\)-arguments are \(a, b, c, y, y'\). Matrix is true if \(\theta w \pmand \theta v \pmand \theta w' \pmand \theta v'\). Assume \(\pmnot \theta w\), and put \(y \pmid y' \pmid w\). Matrix is true if \(\psi x \pmimp \theta y\) and \(\psi x' \pmimp \theta y'\) are false, \ie, in the present case, if \(\psi x\) and \(\psi x'\) are true. Suppose one of them false, and put \(b \pmid x \pmand c \pmid x'\). Then \(\psi b \pmand \psi c\) is false. Therefore \(\phi a \pmdot \pmimp \pmdot \psi b \pmand \psi c\) is false if \(\phi a\) is true; therefore the matrix is true if \(\phi a\) is true. Therefore if \(\phi z\) is true, the matrix is true for \(a \pmid z\). Similarly if \(\phi u\), \(\phi z'\) or \(\phi u'\) is true. But if all are false, matrix is also true. Hence matrix is true when we have \(\pmnot \theta w\) and \(\pmnot \psi x \pmor \pmnot \psi x'\). Similarly for \(\theta v\), \(\theta w'\) or \(\theta v'\) with \(\pmnot \psi x \pmor \pmnot \psi x'\). We saw that matrix can be satisfied \pageSp{648}{398} for \(\pmnot \theta w\), \(\pmnot \theta v\), \(\pmnot \theta w'\) or \(\pmnot \theta v'\) with \(\psi x \pmand \psi x'\). Hence it can be satisfied for \(\pmnot \theta w \pmor \pmnot \theta v \pmor \pmnot \theta w' \pmor \pmnot \theta v'\). And we saw that it is true for \(\theta w \pmand \theta v \pmand \theta w' \pmand \theta v'\). This completes the cases. Hence Prop.
+\begin{flalign*}
+\pmsnb{8}{366}. \; \, \pmthm \pmdottt \pmsome{x} \pmdot {} & \phi x \pmdot \pmimp \pmdot \pmsome{x} \pmdot \psi x \pmdott \pmimp \pmdott {} & \\ 
+& \{\pmall{x} \pmdot \chi x\} \pminc \{\pmsome{x} \pmdot \psi x\} \pmdot \pmimp \pmdot \{\pmsome{x} \pmdot \phi x\} \pminc \{\pmall{x} \pmdot \chi x\}  &
+\end{flalign*}
+Prop is what results from \(\pmsn{8}{364}\) by interchanging ``all'' and ``some'' in the \(\psi\)-arguments, viz.\ \(b,c,x,x'\). Hence the \(\pmSome\)-arguments are \(a, x, x', w, v, w', v'\).  The proof proceeds as in \(\pmsn{8}{364}\), interchanging \(b,c\) and \(x,x'\).
+\begin{flalign*}
+\pmsnb{8}{367}. \; \, \pmthm \pmdottt \pmsome{x} \pmdot {} & \phi x \pmdot \pmimp \pmdot \pmsome{x} \pmdot \psi x \pmdott \pmimp \pmdott {} & \\ 
+& \{\pmsome{x} \pmdot \chi x\} \pminc \{\pmsome{x} \pmdot \psi x\} \pmdot \pmimp \pmdot \{\pmsome{x} \pmdot \phi x\} \pminc \{\pmsome{x} \pmdot \chi x\}  &
+\end{flalign*}
+Prop is what results from \(\pmsn{8}{365}\) by interchanging ``all'' and ``some'' in the \(\psi\)-arguments, viz.\ \(b,c,x,x'\). Hence the \(\pmSome\)-arguments are \(a, x, x', y, y'\).  The proof proceeds as in \(\pmsn{8}{365}\), interchanging \(b,c\) and \(x,x'\).
+
+This completes the 26 cases of \(p \pmimp q \pmdot \pmimp \pmdot s \pminc q \pmimp p \pminc s\). Hence in all the propositions of \(\pmschs{1}{5}\) we can substitute propositions containing one variable. The proofs for propositions containing 2 or 3 or 4 or {...} variables are step-by-step the same. Hence the propositions of'\(\pmschs{1}{5}\) hold of all first-order propositions.
+
+The extension to second-order propositions, and thence to third-order propositions, and so on, is made by exactly analogous steps. Hence all stroke-functions which can be demonstrated for elementary propositions can be demonstrated for propositions of any order.
+
+It remains to prove \(\pmnot \{\pmall{x} \pmdot \phi x\} \pmdot \pmiff \pmdot \pmsome{x} \pmdot \pmnot \phi x\) and similar propositions.
+\begin{flalign*}
+	& \pmsnb{8}{4}. \quad \; \, \pmthm \pmdott \pmnot \{\pmall{x} \pmdot \phi x\} \pmdot \pmiff \pmdot \pmsome{x} \pmdot \pmnot \phi x & 
+\end{flalign*}
+\pmdemi
+\begin{flalign*}
+	& \pmthm \pmdot \pmsn{8}{1} \pmdot & & \pmithm \pmdott \phi x \pminc \phi x \pmdot \pmimp \pmdot \pmsome{y} \pmdot \phi x \pminc \phi y & (1) \\
+	& \pmthm \pmdot (1) \pmand \pmsn{8}{21} \pmdot & & \pmithm \pmdott \pmsome{x} \pmdot \phi x \pminc \phi x \pmdot \pmimp \pmdot \pmsome{x,y} \pmdot \phi x \pminc \phi y \pmdott & \\
+	& [\pmsnn{8}{01}{012}]  & & \pmithm \pmdott \pmsome{x} \pmdot \pmnot \phi x \pmdot \pmimp \pmdot \pmall{x} \pmdot \phi x  & (2) \\
+	& \text{We have} & & \pmthm \pmdott p \pminc q \pmdot \pmiff \pmdot p \pminc p \pmor q \pminc q & (3) \\
+	& \pmthm \pmdot (3) \pmdot & & \pmithm \pmdott \phi x \pminc \phi y \pmdot \pmiff \pmdot \phi x \pminc \phi x \pmor \phi y \pminc \phi y & (4) \\
+	& \pmthm \pmdot (4) \pmand \pmsnn{8}{22}{24} \pmdot & & \pmithm \pmdott \phi x \pminc \phi y \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x \pminc \phi x & (5) \\
+	& [\pmsn{8}{011}]  & & \pmthm \pmdottt \pmsome{x,y} \pmdot f(x,y) \pmdot \pmimp \pmdot p \pmdott \pmiff \pmdott \pmall{x,y} \pmdot f(x,y) \pmimp p  & (6) \\
+	& \pmthm \pmdot (5) \pmand (6) \pmdot & & \pmithm \pmdott \pmsome{x,y} \pmdot \phi x \pminc \phi y \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x \pminc \phi x \pmdott & \\ %%Sorta looks like a stray mark leading to a double dot, but only a single dot is meant.
+	& [\pmpsnn{8}{01}{012}]  & & \pmithm \pmdott \pmnot \{\pmall{x} \pmdot \phi x \} \pmdot \pmimp \pmdot \pmsome{x} \pmdot \pmnot \phi x & (7) \\
+	& \pmthm \pmdot (2) \pmand (7) \pmdot & & \pmithm \pmdot \pmprop &
+\end{flalign*}
+\begin{flalign*}
+	& \pmsnb{8}{41}. \quad \pmthm \pmdott \pmnot \{\pmsome{x} \pmdot \phi x\} \pmdot \pmiff \pmdot \pmall{x} \pmdot \pmnot \phi x & \\
+	& [\text{Similar Proof}] & 
+\end{flalign*}
+\begin{flalign*}
+& \pmsnb{8}{42}. \quad \pmthm \pmdott p \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x \pmdott \pmiff \pmdott \pmsome{x} \pmdot p \pmimp \phi x & 
+\end{flalign*}
+\pmdemi
+\begin{flalign*}
+	&& \pmthm \pmdottt p \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x \pmdott {} & \pmiff \pmdott p \pminc \{\pmnot \pmsome{x} \pmdot \phi x\} \pmdott & \\
+	& [\pmsn{8}{41}] & & \pmiff \pmdott p \pminc \{\pmall{x} \pmdot \pmnot \phi x\} \pmdott & \\
+	& [\pmpsn{8}{011}] & & \pmiff \pmdott \pmsome{x} \pmdot p \pminc \pmnot \phi x \pmdott & \\
+	& [\pmsn{8}{41}] & & \pmiff \pmdott \pmsome{x} \pmdot p \pmimp \phi x \pmdottt \pmithm \pmdot \pmprop & 
+\end{flalign*}
+\pageSp{649}{399} \begin{flalign*}
+	& \pmsnb{8}{43}. \quad \pmthm \pmdottt p \pmdot \pmimp \pmdot \pmall{x} \pmdot \phi x \pmdott \pmiff \pmdott \pmall{x} \pmdot p \pmimp \phi x & \\
+	& [\text{Similar Proof}] & 
+\end{flalign*}
+Other propositions of this type may be taken for granted.
+\begin{flalign*}
+	& \pmsnb{8}{42}. \quad \pmthm \pmdott p \pmdot \pmimp \pmdot \pmsome{x} \pmdot \phi x \pmdott \pmiff \pmdott \pmsome{x} \pmdot p \pmimp \phi x & 
+\end{flalign*}
+\pmdemi
+\begin{flalign*}
+&\pmthm \pmdottt \phi z \pmdot \pmimp \pmdott \psi z \pmdot \pmimp \pmdot \phi z \pmand \psi z & (1) \\
+& \pmthm \pmdot (1) \pmand \pmsn{8}{1} \pmdot \pmithm \pmdottttt \pmsome{x} \pmdottttt \pmsome{y} \pmdotttt \pmall{z} \pmdottt \phi x \pmdot \pmimp \pmdott \psi y \pmdot \pmimp \pmdot \phi z \pmand \psi z & (2) \\
+& \pmthm \pmdot (2) \pmand \pmsnn{8}{42}{43} \pmdot \pmithm \pmdot \pmprop & 
+\end{flalign*}
+\(\pmsnb{8}{5}\). \hspace{.05cm} If \(F(p,q,r,...)\) is a stroke-function of elementary propositions, and \(p, q, r, ...\) are replaced by first-order propositions \(p_1, q_1, r_1, ...\), we shall have 
+\[ p \pmiff p_1 \pmand q \pmiff q_1 \pmand r \pmiff r_1, {...} \pmimp \pmdott F(p,q,r,...) \pmdot \pmiff \pmdot F(p_1, q_1, r_1, ...).\]
+This follows from 
+\begin{flalign*}
+	 && p_1 \pmdot \pmiff \pmdot \pmall{x} \pmdot \phi x \pmdott {} \;\; & \pmimp \pmdott p \pmiff p_1 \pmdot \pmimp \pmdot p_1 \pminc q \pmiff p \pminc q \pmand q \pminc p_1 \pmiff q \pminc p, & \\
+	 && p_1 \pmdot \pmiff \pmdot \pmsome{x} \pmdot \phi x \pmdott {}  & \pmimp \pmdott p \pmiff p_1 \pmdot \pmimp \pmdot p_1 \pminc q \pmiff p \pminc q \pmand q \pminc p_1 \pmiff q \pminc p, &
+\end{flalign*}
+both of which are very easily proved.

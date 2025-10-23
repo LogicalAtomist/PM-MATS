@@ -47,6 +47,14 @@ export class Map {
             .attr('class', 'tooltip')
             .style('opacity', 0)
             .style('position', 'absolute')
+
+        // SVG tooltip for displaying external SVG files
+        this.svgTooltip = d3.select('body')
+            .append('div')
+            .attr('class', 'svg-tooltip')
+            .style('opacity', 0)
+            .style('position', 'absolute')
+            .style('pointer-events', 'none') // Ensures it doesn't interfere with mouse events
     }
 
     /**
@@ -121,7 +129,7 @@ export class Map {
             .attr('y2', '100%')
         thmnt.append('stop').attr('offset', '50%').attr('stop-color', '#cc5500')
         thmnt.append('stop').attr('offset', '50%').attr('stop-color', 'black')
-    
+
         const shapes = this.svg.selectAll('circle')
             .data(Object.values(this.data).flat())
             .enter()
@@ -148,7 +156,7 @@ export class Map {
                 }
                 return this.fill
             })
-    
+
         shapes.attr('cx', d => d.x - minX + this.xOffset)
             .attr('cy', d => d.y - minY + this.yOffset)
             .attr('r', d => {
@@ -156,27 +164,72 @@ export class Map {
                 const radiusIncreaseFactor = 0
                 return this.size + (decimalCount * radiusIncreaseFactor)
             })
-    
-            shapes.on('click', (event, d) => {
-                console.log(`Clicked circle with data:`, d)
-                let queryString = new URLSearchParams({ n: d.properties.number })
-                let currentUrl = new URL(window.location.href)
-                
-                // Remove 'edition-2' if present
-                queryString.delete('edition-2')
-                
-                // Add the rest of the current parameters to the query string
-                for (let [key, value] of currentUrl.searchParams.entries()) {
-                    if (key !== 'edition-2') {
-                        queryString.append(key, value)
-                    }
+
+        shapes.on('click', (event, d) => {
+            console.log(`Clicked circle with data:`, d)
+            let queryString = new URLSearchParams({ n: d.properties.number })
+            let currentUrl = new URL(window.location.href)
+
+            // Remove 'edition-2' if present
+            queryString.delete('edition-2')
+
+            // Add the rest of the current parameters to the query string
+            for (let [key, value] of currentUrl.searchParams.entries()) {
+                if (key !== 'edition-2') {
+                    queryString.append(key, value)
                 }
-            
-                // Open new URL with the updated query string
-                let newUrl = `${currentUrl.origin}${currentUrl.pathname}?${queryString.toString()}`
-                window.open(newUrl, '_blank')
-            })
-            
+            }
+
+            // Open new URL with the updated query string
+            let newUrl = `${currentUrl.origin}${currentUrl.pathname}?${queryString.toString()}`
+            window.open(newUrl, '_blank')
+        })
+        // Add mouseenter and mouseleave event listeners
+        .on('mouseenter', (event, d) => this._showSvgTooltip(event, d))
+        .on('mouseleave', () => this._hideSvgTooltip())
+    }
+
+    /**
+     * Shows the SVG tooltip when hovering over a shape.
+     * 
+     * @private
+     * @param {Event} event - The mouse event.
+     * @param {Object} d - The data of the node.
+     */
+    _showSvgTooltip(event, d) {
+        const number = d.properties.number
+        const fileName = `./svgs/${number}.svg`
+
+        d3.xml(fileName).then(data => {
+            // Remove any existing content
+            this.svgTooltip.selectAll('*').remove()
+
+            // Append the loaded SVG to the svgTooltip div
+            this.svgTooltip.node().appendChild(data.documentElement)
+
+            // Show the tooltip
+            this.svgTooltip.transition()
+                .duration(200)
+                .style('opacity', 1)
+
+            // Position the tooltip near the mouse
+            this.svgTooltip
+                .style('left', (event.pageX + 10) + 'px')
+                .style('top', (event.pageY - 28) + 'px')
+        }).catch(error => {
+            console.error(`Error loading SVG file ${fileName}:`, error)
+        })
+    }
+
+    /**
+     * Hides the SVG tooltip.
+     * 
+     * @private
+     */
+    _hideSvgTooltip() {
+        this.svgTooltip.transition()
+            .duration(500)
+            .style('opacity', 0)
     }
 
     /**
@@ -282,12 +335,12 @@ export class Map {
     _showTooltip(event, d) {
         this.tooltip.transition()
             .duration(200)
-            .style('opacity', .9)
+            .style('opacity', 0.9)
         this.tooltip.html(`Volume ${romanize(d.properties.volume)}<br>Part ${romanize(d.properties.part)}: ${findLabel(d.properties.number, this.data, labels)['part-label']}<br>Section ${d.properties.section}: ${findLabel(d.properties.number, this.data, labels)['sect-label']}<br>Chapter ${d.properties.chapter}: ${findLabel(d.properties.number, this.data, labels)['chap-label']}`)
             .style('left', (event.pageX + 10) + 'px')
             .style('top', (event.pageY - 28) + 'px')
     }
-    
+
     /**
      * Hides the tooltip.
      * 
