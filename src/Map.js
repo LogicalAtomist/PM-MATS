@@ -45,6 +45,7 @@ export class Map {
         this.tooltip = d3.select('body')
             .append('div')
             .attr('class', 'tooltip')
+            .attr('aria-hidden', 'true')
             .style('opacity', 0)
             .style('position', 'absolute')
 
@@ -52,6 +53,7 @@ export class Map {
         this.svgTooltip = d3.select('body')
             .append('div')
             .attr('class', 'svg-tooltip')
+            .attr('aria-hidden', 'true')
             .style('opacity', 0)
             .style('position', 'absolute')
             .style('pointer-events', 'none') // Ensures it doesn't interfere with mouse events
@@ -282,6 +284,44 @@ export class Map {
             .attr('fill', 'transparent')
             .attr('stroke', 'black')
             .attr('stroke-width', 5)
+            .attr('tabindex', '0')
+            .attr('focusable', 'true')
+            .attr('role', 'link')
+            .attr('aria-label', d => 
+                `Starred number ${d.properties.number}, type ${d.properties.type}. Opens mini-map in new tab.`
+            );
+
+            // Function to open mini-map in a new tab
+            function openMiniMap(d) {
+            // Create query parameters
+                const params = new URLSearchParams();
+                params.set('n', d.properties.number);
+
+            // Preserve existing query parameters (except 'edition-2' and 'n')
+            for (const [key, value] of new URLSearchParams(window.location.search)) {
+                if (!['edition-2', 'n'].includes(key)) {
+                params.set(key, value);
+                }
+            }
+
+            // ✅ Explicitly open minimap.html in a new tab with query string
+            const newUrl = `minimap.html?${params.toString()}`;
+                window.open(newUrl, '_blank');
+            }
+
+            // Keyboard activation: Enter or Space triggers openMiniMap
+            circles.on('keydown', (event, d) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault(); // Prevents page scroll or unwanted link behavior
+                openMiniMap(d);
+            }
+            });
+
+            // Mouse activation: clicking a circle also opens minimap
+            circles.on('click', (event, d) => {
+                openMiniMap(d);
+            });
+
 
         // Create text for special nodes
         const texts = this.svg.selectAll('.special-text')

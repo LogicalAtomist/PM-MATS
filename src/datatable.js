@@ -110,8 +110,14 @@ export let table = new DataTable('#principia-table', {
             className: 'column-width-proofs-by',
             render: function(data, type, row) {
                 let dataArray = Array.isArray(data) ? data : [data]
+                // const count = dataArray.length
                 let formattedData = dataArray.join(', ')
-                return '<div style="max-width: 100%; max-height: 16rem; word-wrap: break-word; overflow-y: auto;">' + (formattedData || '') + '</div>'
+                
+                // Add the count and then the scrollable content
+                // let content = `(${count})<br>` + (formattedData || '')
+                let content = formattedData || ''
+                
+                return '<div style="max-width: 100%; max-height: 16rem; word-wrap: break-word; overflow-y: auto;">' + content + '</div>'
             },
         },
         {
@@ -120,8 +126,14 @@ export let table = new DataTable('#principia-table', {
             className: 'column-width-proofs',
             render: function(data, type, row) {
                 let dataArray = Array.isArray(data) ? data : [data]
+                // const count = dataArray.length
                 let formattedData = dataArray.join(', ')
-                return '<div style="max-width: 100%; max-height: 16rem; word-wrap: break-word; overflow-y: auto;">' + (formattedData || '') + '</div>'
+                
+                // Add the count and then the scrollable content
+                // let content = `(${count})<br>` + (formattedData || '')
+                let content = formattedData || ''
+                
+                return '<div style="max-width: 100%; max-height: 16rem; word-wrap: break-word; overflow-y: auto;">' + content + '</div>'
             },
         },
     ],
@@ -135,6 +147,10 @@ export let table = new DataTable('#principia-table', {
             const title = column.header().textContent
             const input = document.createElement('input')
             input.placeholder = title
+
+            input.setAttribute('aria-label', title)
+            input.setAttribute('title', title)
+
             column.header().replaceChildren(input)
     
             input.addEventListener('keyup', function() {

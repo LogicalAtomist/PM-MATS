@@ -425,3 +425,49 @@ figcaption {
 .fallback-symbol {
     font-family: "Noto Sans Symbols2", "Noto Sans Symbols", "Apple Color Emoji", "Segoe UI Symbol", sans-serif
   }
+
+.special-circle:focus {
+    outline: 3px dashed blue; /* visible outline for focus */
+    outline-offset: 3px;      /* ensures the outline is outside the circle */
+}
+/* 1. Visually hide content, keeping it accessible to screen readers */
+.visually-hidden {
+    position: absolute !important;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+/* 2. Style the Skip Link */
+.skip-link {
+    /* Apply visual hiding properties. */
+    position: absolute !important;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    z-index: 9999; 
+    /* The link will use these hiding properties by default */
+}
+
+/* 3. Make the link VISIBLE only when it receives keyboard focus */
+.skip-link:focus {
+    /* Bring it into view over the navigation */
+    position: static !important; 
+    width: auto !important;
+    height: auto !important;
+    margin: 0;
+    padding: 10px;
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+}

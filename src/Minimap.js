@@ -51,12 +51,14 @@ export class Minimap {
         this.tooltip = d3.select('body')
             .append('div')
             .attr('class', 'tooltip')
+            .attr('aria-hidden', 'true')
             .style('opacity', 0)
             .style('position', 'absolute')
 
         this.minimpTooltip = d3.select('body')
             .append('div')
             .attr('class', 'minimp-tooltip')
+            .attr('aria-hidden', 'true')
             .style('opacity', 0)
             .style('position', 'absolute')
     }
@@ -98,8 +100,7 @@ export class Minimap {
 
     /**
      * Draws shapes on the SVG canvas.
-     * 
-     * @private
+     * * @private
      * @param {number} minX - The minimum X-coordinate in the data.
      * @param {number} minY - The minimum Y-coordinate in the data.
      */
@@ -132,6 +133,15 @@ export class Minimap {
         thmnt.append('stop').attr('offset', '50%').attr('stop-color', '#cc5500')
         thmnt.append('stop').attr('offset', '50%').attr('stop-color', 'black')
 
+        // --- NEW GRADIENT DEFINITION for Half-Circle Highlight (Issue #60) ---
+        const highlightHalf = defs.append('linearGradient')
+            .attr('id', 'highlightHalf')
+            .attr('x1', '0%').attr('y1', '0%')
+            .attr('x2', '0%').attr('y2', '100%')
+        highlightHalf.append('stop').attr('offset', '50%').attr('stop-color', 'yellow') // Highlight half
+        highlightHalf.append('stop').attr('offset', '50%').attr('stop-color', 'black') // Retain black half
+        // --- END NEW GRADIENT ---
+
         const shapes = this.svg.selectAll('circle')
             .data(Object.values(this.data).flat())
             .enter()
@@ -139,8 +149,16 @@ export class Minimap {
             .filter(d => !d.properties.isPlaceholder)
             .attr('fill', d => {
                 if (d.properties.number === this.highlightedNumber && this.mainMinimap) {
-                    return 'yellow'
+                    // --- UPDATED COLORING LOGIC ---
+                    // Check if the node is one of the half-circle types
+                    if (['Pp(nt)', 'Dft', 'Thm(nt)'].includes(d.properties.type)) {
+                        return 'url(#highlightHalf)' // Apply the half-yellow/half-black gradient
+                    }
+                    return 'yellow' // Apply uniform yellow for standard nodes
+                    // --- END UPDATED LOGIC ---
                 }
+                
+                // Keep the original coloring logic for non-highlighted nodes
                 if (d.properties.type) {
                     switch (d.properties.type) {
                         case 'Thm':
@@ -230,6 +248,44 @@ export class Minimap {
             .attr('fill', 'transparent')
             .attr('stroke', 'black')
             .attr('stroke-width', 5)
+            .attr('tabindex', '0')
+            .attr('focusable', 'true')
+            .attr('role', 'link')
+            .attr('aria-label', d => 
+                `Starred number ${d.properties.number}, type ${d.properties.type}. Opens mini-map in new tab.`
+            );
+
+            // Function to open mini-map in a new tab
+            function openMiniMap(d) {
+            // Create query parameters
+                const params = new URLSearchParams();
+                params.set('n', d.properties.number);
+
+            // Preserve existing query parameters (except 'edition-2' and 'n')
+            for (const [key, value] of new URLSearchParams(window.location.search)) {
+                if (!['edition-2', 'n'].includes(key)) {
+                params.set(key, value);
+                }
+            }
+
+            // ✅ Explicitly open minimap.html in a new tab with query string
+            const newUrl = `minimap.html?${params.toString()}`;
+                window.open(newUrl, '_blank');
+            }
+
+            // Keyboard activation: Enter or Space triggers openMiniMap
+            circles.on('keydown', (event, d) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault(); // Prevents page scroll or unwanted link behavior
+                openMiniMap(d);
+            }
+            });
+
+            // Mouse activation: clicking a circle also opens minimap
+            circles.on('click', (event, d) => {
+                openMiniMap(d);
+            });
+
 
         // Create text for special nodes
         const texts = this.svg.selectAll('.special-text')

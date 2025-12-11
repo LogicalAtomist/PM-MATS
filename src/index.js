@@ -41,6 +41,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     $('.content-container').append('<svg id="pm-map"></svg>')
     $('#navbarSupportedContent').append(searchTemplate)
     normalMap(excludedChapters)
+
+    // 🔍 SEARCH HANDLER + focus on SVG node
     $('#number-search').on('submit', function(e) {
       e.preventDefault()
       const num = $('.menu-search').val()
@@ -48,17 +50,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     
       if (!num.includes('.')) {
         const chapterNodes = pm.getChapterNodes(num)
-        // Select the first real node (not a ghost node)
-        node = chapterNodes.find(n => !n.properties.isPlaceholder)
-        if (!node) {
-          node = chapterNodes[0]
-        }
+        node = chapterNodes.find(n => !n.properties.isPlaceholder) || chapterNodes[0]
       } else {
         node = pm.getNodeByNumber(num)
       }
       
       if (node) {
-        // Construct new URL without edition-2 if n is present
         const newUrl = new URL(window.location.href)
         newUrl.searchParams.set('n', num)
         newUrl.searchParams.delete('edition-2')
@@ -67,12 +64,43 @@ document.addEventListener('DOMContentLoaded', (event) => {
         $('.content-container').animate({
           scrollLeft: node.x - $(window).width() / 2
         }, 100)
+
+        // ⭐ Automatically focus the node’s SVG circle
+        setTimeout(() => {
+          const circle = document.querySelector(`circle[data-number="${node.number}"]`)
+          if (circle) {
+            circle.setAttribute('tabindex', '0')
+            circle.focus()
+          }
+
+        const announcer = document.getElementById('announce-move')
+        announcer.textContent = `Moved to starred number ${node.number}`
+
+        }, 150)
+
       } else {
         console.log("No matching chapter found for number:", num)
       }
-    })    
+    })
   }
 })
+
+const container = document.querySelector('.content-container');
+const SCROLL_AMOUNT = 80;
+
+container.setAttribute('tabindex', '0');
+
+container.addEventListener('keydown', function(event) {
+  if (event.key === 'ArrowRight') {
+    event.preventDefault();
+    container.scrollLeft += SCROLL_AMOUNT;
+  }
+  if (event.key === 'ArrowLeft') {
+    event.preventDefault();
+    container.scrollLeft -= SCROLL_AMOUNT;
+  }
+});
+
 
 /**
  * Updates the chapter title in the minimap based on the given chapter number.
@@ -94,8 +122,7 @@ function minimapTemplate() {
   const html = `
     <div class="container mt-2 minimap-container-padding-top" id="minimap-column-top">
       <div class="row main-svg">
-        <div class="col">
-        </div>
+        <div class="col"></div>
         <div class="col">
             <div class="row">
               <div id="minimap-title" class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
@@ -106,8 +133,7 @@ function minimapTemplate() {
               </div>
             </div>
         </div>
-        <div class="col">
-        </div>
+        <div class="col"></div>
       </div>
       <div class="row proofs-svg">
         <div class="col" id="left-svg-container">
@@ -135,7 +161,7 @@ function createSummaryLink(pmNumber) {
   const volume = node.properties.volume
   let link
 
-  switch(volume) {
+  switch (volume) {
     case "1":
       link = `https://archive.org/details/alfred-north-whitehead-bertrand-russel-principia-mathematica.-1/Alfred%20North%20Whitehead%2C%20Bertrand%20Russel%20-%20Principia%20Mathematica.%201/page/${page}/mode/2up`
       break
@@ -166,7 +192,6 @@ function insertChapterSvgs(pmNumber, isLeft) {
     return
   }
 
-  // Replace periods in pmNumber with underscores for valid ID
   const safePmNumber = pmNumber.replace(/\./g, '_')
   const targetContainer = isLeft ? '#left-svgs' : '#right-svgs'
   const svgId = isLeft ? `left-svg${safePmNumber}` : `right-svg${safePmNumber}`
@@ -190,15 +215,21 @@ function generateAllRows(pmNumber) {
     return
   }
 
-  // "Its Proof Cites..." is 'provenBy' in the JSON and is on the left
-  // "Cited in Proof of..." is 'proves' in the JSON" and is on the right
-
   const provenBy = node.provenBy || []
   const proves = node.proves || []
+  
+  // --- START OF NEW COUNTER LOGIC ---
+  // const provenByCount = provenBy.length
+  // const provesCount = proves.length
+  
+  // Update the left header (Its Proof Cites...)
+  // $('#left-svg-container h3').text(`Its Proof Cites... (${provenByCount})`)
+  
+  // Update the right header (Cited in Proof of...)
+  // $('#right-svg-container h3').text(`Cited in Proof of... (${provesCount})`)
+  // --- END OF NEW COUNTER LOGIC ---
 
-  // sort the arrays numerically
   provenBy.sort((a, b) => parseFloat(a) - parseFloat(b))
-  console.log("sorted", provenBy)
   proves.sort((a, b) => parseFloat(a) - parseFloat(b))
 
   if (provenBy.length === 0) {
@@ -208,21 +239,12 @@ function generateAllRows(pmNumber) {
     $('#right-svg-container h3').text('does not appear in any demonstration')
   }
 
-  provenBy.forEach((proven, i) => insertChapterSvgs(proven, true))
-  proves.forEach((prove, i) => insertChapterSvgs(prove, false))
+  provenBy.forEach((proven) => insertChapterSvgs(proven, true))
+  proves.forEach((prove) => insertChapterSvgs(prove, false))
 }
-
 
 /**
  * Processes the chapters and generates the data needed for the minimap.
- * 
- * @param {Object} [options={}] - Options for processing the chapters.
- * @param {Array<string>} [options.chapterNumbers=null] - The specific chapters to process.
- * @param {number} [options.GAP=200] - The gap between chapters.
- * @param {number} [options.PAD=50] - The padding between nodes in a chapter.
- * @param {number} [options.x=0] - The starting x-coordinate.
- * @param {Array<string>} [options.excluded=['8', '89']] - The chapters to be excluded.
- * @returns {Object} The processed chapter data.
  */
 function processChapters({ chapterNumbers = null, GAP = 200, PAD = 50, x = 0, excluded = ['8', '89'] } = {}) {
   const chapters = pm.getChapterNumbers().filter(chapter => !excluded.includes(chapter))
@@ -246,11 +268,6 @@ function processChapters({ chapterNumbers = null, GAP = 200, PAD = 50, x = 0, ex
 
 /**
  * Generates a minimap for the specified chapters.
- * 
- * @param {Array<string>} chapters - The chapters to generate the minimap for.
- * @param {string} svgSelector - The CSS selector for the SVG element.
- * @param {string|null} [highlightedNumber=null] - The chapter number to highlight.
- * @param {Array<string>} excluded - The chapters to be excluded.
  */
 function miniMap(chapters, svgSelector, highlightedNumber = null, excluded = []) {
   const content = processChapters({
@@ -272,8 +289,6 @@ function miniMap(chapters, svgSelector, highlightedNumber = null, excluded = [])
 
 /**
  * Generates the main map visualization.
- * 
- * @param {Array<string>} excluded - The chapters to be excluded.
  */
 function normalMap(excluded = []) {
   new Map('#pm-map', processChapters({ excluded }), {

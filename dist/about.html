@@ -1,29 +1,28 @@
 <!DOCTYPE html>
-<html>
-  <head lang="en">
-   <!--Combined Analytics - Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWD47TCY4T"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-DWD47TCY4T'); </script>
-   <!--Site Specific - Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-TLL8DVCRRB"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-TLL8DVCRRB'); </script>
+<html lang="en">
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWD47TCY4T"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-DWD47TCY4T'); </script>
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TLL8DVCRRB"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-TLL8DVCRRB'); </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Principia Mathematica">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://principia.lib.uiowa.edu">
     <meta property="og:image" content="https://principia.lib.uiowa.edu/images/card.jpg">
     <meta property="og:description" content="Digital tools to make clear structural connections between different parts of Whitehead and Russells's Principia Mathematica and to make analyzable data about the theorems, definitions, and primitive postulates in its text.">
 
-    <!-- Optional Meta Tags -->
     <meta property="og:site_name" content="Principia Mathematica">
     <meta property="og:locale" content="en_US">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="vendor/bootstrap-5.0.2.min.css">
+    <link rel="stylesheet" href="vendor/eb-garamond.css">
     <link rel="stylesheet" href="style.css" />
     <title>Principia Mathematica</title>
-  </head>
+  </html>
   <body>
+    <a class="skip-link" href="#main">Skip to main content</a> 
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
          <div class="navbar-brand">Principia Mathematica</div>
@@ -51,9 +50,11 @@
          </div>
       </div>
    </nav>
+   <main id="main" role="main">
       <div class="container py-5">
          <div class="row">
             <div class="text-center mb-4">
+               <h1 class="visually-hidden">Principia Mathematica – About</h1>
                <h3>About the project</h3>
             </div>
              <div class="col-12 col-md-8 offset-md-2">
@@ -64,7 +65,7 @@
                      <li> A <a href="table.html" class="info-link">table of <em>Principia</em></a> that allows users to search for specific starred numbers, sections, chapters, and more, and also allows exportation of search results to JSON or CSV files.</li>
                  </ol>
                  <p>This project is supported by a Scholarly Editions and Translations grant from the National Endowment for the Humanities running from 2023 to 2025. This project is also part of the broader initiative, the <a href="https://www.principiarewrite.com/" class="info-link">Principia Rewrite project</a>.</p>
-                 <p>You can read about the people working on this project <a href="people.html" class="info-link">here</a>.</p>
+                 <p>You can read about the <a href="people.html" class="info-link">people working on this project</a>.</p>
              </div>
              <div class="col-12 col-md-8 offset-md-2">
                <h5><strong><em>Principia Mathematica</em> and PM-MATS </strong></h5>
@@ -76,7 +77,7 @@
            </div>
            <div class="col-12 col-md-8 offset-md-2">
             <h5><strong>Further information</strong></h5>
-            <p>To get further information about <em>Principia</em> or the PM-MATS project, contact us <a href="https://forms.office.com/r/XpxwubBPi3" class="info-link">[here]</a>. You can also submit an issue on <a href="https://github.com/ui-libraries/principia" class="info-link">[the PM-MATS GitHub repository]</a>.</p>
+            <p>To get further information about <em>Principia</em> or the PM-MATS project, contact us using the <a href="https://forms.office.com/r/XpxwubBPi3" class="info-link">project contact form</a>. You can also submit an issue on the <a href="https://github.com/ui-libraries/principia" class="info-link">PM-MATS GitHub repository</a>.</p>
            </div>
            <div class="col-12 col-md-8 offset-md-2">
             <h5><strong>Support</strong></h5>          
@@ -92,8 +93,9 @@
 
          </div>
      </div>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+   </main>
+    <script src="js/d3.min.js"></script>
+    <script src="js/bootstrap-bundle.min.js"></script>
     <script src="js/bundle.js" charset="utf-8"></script>
   </body>
 </html>

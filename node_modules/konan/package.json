@@ -1,0 +1,31 @@
+{
+  "name": "konan",
+  "version": "2.1.1",
+  "description": "find all `require` `import` calls by walking the AST",
+  "repository": {
+    "url": "egoist/konan",
+    "type": "git"
+  },
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "author": "egoist <0x142857@gmail.com>",
+  "license": "MIT",
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "@egoist/prettier-config": "^0.1.0",
+    "esm": "^3.2.25",
+    "prettier": "^2.0.5",
+    "uvu": "^0.2.2"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.10.5",
+    "@babel/traverse": "^7.10.5"
+  }
+}

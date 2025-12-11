@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-   <head lang="en">
+   <html lang="en">
     <!--Combined Analytics - Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWD47TCY4T"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-DWD47TCY4T'); </script>
     <!--Site Specific - Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-TLL8DVCRRB"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-TLL8DVCRRB'); </script>
       <meta charset="utf-8">
@@ -18,12 +18,13 @@
       <meta property="og:locale" content="en_US">
       <meta property="og:image:width" content="1200">
       <meta property="og:image:height" content="630">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-      <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="vendor/bootstrap-5.0.2.min.css">
+      <link rel="stylesheet" href="vendor/eb-garamond.css">
       <link rel="stylesheet" href="style.css" />
       <title>Principia Mathematica</title>
-   </head>
+   </html>
    <body>
+      <a class="skip-link" href="#main">Skip to main content</a> 
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
          <div class="container-fluid">
             <div class="navbar-brand">Principia Mathematica</div>
@@ -51,6 +52,7 @@
             </div>
          </div>
       </nav>
+    <main id="main" role="main">
       <div class="container py-5">
          <div class="row">
             <div class="text-center mb-4">
@@ -264,20 +266,22 @@
                </div>
                <p> <em>Principia</em> has been reprinted many times. The first edition, co-authored by Alfred North Whitehead and Bertrand Russell, was published in 1910-1913. The second edition, with a new introduction and three new appendices by Russell alone, was published in 1925-1927. The table on the PM-MATS includes data about starred numbers occurring in this second edition material, which are all contained in Appendix A (*8) and Appendix B (*89).
                </p>
-               <p> Readers only interested in first edition materials can filter out Chapters *8 and *89 in the table. Note that the table includes starred numbers from the second edition by default. In contrast, the global map of <em>Principia</em> excludes these starred numbers by default, but you can view a global map with these two starred numbers included <a href="http://principia.lib.uiowa.edu/map.html?edition-2" class="info-link">[here]</a>.
+               <p>Readers only interested in first edition materials can filter out Chapters *8 and *89 in the table. Note that the table includes starred numbers from the second edition by default. In contrast, the global map of <em>Principia</em> excludes these starred numbers by default, but you can view the <a href="http://principia.lib.uiowa.edu/map.html?edition-2" class="info-link">second edition global map</a> with these two starred numbers included.</p>
                </p>
                <p> Second edition materials are included in the mini-maps networks. So, mini-maps of specific nodes within chapters will allow you to click to and from nodes within the second edition (when nodes from *8 and *89 in fact appear in the "Its Proof Cites..." and "Cited in Proof of..." columns) regardless of whether you navigate to a mini-map node from the default (landing page) global map (which is the first edition only) or the second edition global map just linked.
                </p>
                <div class="text-center mb-4">
+                <h1 class="visually-hidden">Principia Mathematica – Guide</h1>
                   <h3>Questions, Suggestions, or Comments?</h3>
                </div>
-               <p>Contact us <a href="https://forms.office.com/r/XpxwubBPi3" class="info-link">[here]</a>. You can also submit an issue on <a href="https://github.com/ui-libraries/principia" class="info-link">[the PM-MATS GitHub repository]</a>.
+               <p>Contact us using the <a href="https://forms.office.com/r/XpxwubBPi3" class="info-link">project contact form</a>. You can also submit an issue on the <a href="https://github.com/ui-libraries/principia" class="info-link">PM-MATS GitHub repository</a>.</p>
                </p>
             </div>
          </div>
       </div>
-      <script src="https://d3js.org/d3.v7.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </main>
+      <script src="js/d3.min.js"></script>
+      <script src="js/bootstrap-bundle.min.js"></script>
       <script src="js/bundle.js" charset="utf-8"></script>
    </body>
 </html>

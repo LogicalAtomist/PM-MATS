@@ -1,30 +1,29 @@
 <!DOCTYPE html>
-<html>
-   <head lang="en">
-      <!--Combined Analytics - Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWD47TCY4T"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-DWD47TCY4T'); </script>
-      <!--Site Specific - Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-TLL8DVCRRB"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-TLL8DVCRRB'); </script>
+<html lang="en">
+   <head>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWD47TCY4T"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-DWD47TCY4T'); </script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TLL8DVCRRB"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-TLL8DVCRRB'); </script>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- Open Graph Meta Tags -->
       <meta property="og:title" content="Principia Mathematica">
       <meta property="og:type" content="website">
       <meta property="og:url" content="https://principia.lib.uiowa.edu">
       <meta property="og:image" content="https://principia.lib.uiowa.edu/images/card.jpg">
       <meta property="og:description" content="Digital tools to make clear structural connections between different parts of Whitehead and Russells's Principia Mathematica and to make analyzable data about the theorems, definitions, and primitive postulates in its text.">
 
-      <!-- Optional Meta Tags -->
       <meta property="og:site_name" content="Principia Mathematica">
       <meta property="og:locale" content="en_US">
       <meta property="og:image:width" content="1200">
       <meta property="og:image:height" content="630">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
-      <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="vendor/bootstrap-5.0.2.min.css">
+      <link rel="stylesheet" href="vendor/jquery.dataTables-1.13.6.css" />
+      <link rel="stylesheet" href="vendor/eb-garamond.css">
       <link rel="stylesheet" href="style.css" />
       <title>Principia Mathematica</title>
    </head>
    <body id="table-body">
+      <a class="skip-link" href="#main">Skip to main content</a>
       <div class="fixed-top-container">
          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
@@ -54,39 +53,58 @@
             </div>
          </nav>
       </div>
-      <table id="principia-table" class="display">
-         <thead>
-            <tr>
-               <th>ID</th>
-               <th>Type</th>
-               <th>Volume</th>
-               <th>Part</th>
-               <th>Section</th>
-               <th>Chapter</th>
-               <th>Number</th>
-               <th>Page</th>
-               <th>Its proof cites...</th>
-               <th>Cited in proof of...</th>
-            </tr>
-         </thead>
-         <tfoot>
-            <tr>
-               <th>ID</th>
-               <th>Type</th>
-               <th>Volume</th>
-               <th>Part</th>
-               <th>Section</th>
-               <th>Chapter</th>
-               <th>Number</th>
-               <th>Page</th>
-               <th>Its proof cites...</th>
-               <th>Cited in proof of...</th>
-            </tr>
-         </tfoot>
-      </table>
-      <script src="https://d3js.org/d3.v7.min.js"></script>
-      <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+      
+      <main id="main" role="main">
+         <table id="principia-table" class="display">
+            <caption>
+               Table of Principia entries, showing type, volume, section, and citation relationships.
+            </caption>
+            <thead>
+               <tr>
+                  <th>ID</th>
+                  <th>Type</th>
+                  <th>Volume</th>
+                  <th>Part</th>
+                  <th>Section</th>
+                  <th>Chapter</th>
+                  <th>Number</th>
+                  <th>Page</th>
+                  <th>Its proof cites...</th>
+                  <th>Cited in proof of...</th>
+               </tr>
+            </thead>
+            <tfoot>
+               <tr>
+                  <th>ID</th>
+                  <th>Type</th>
+                  <th>Volume</th>
+                  <th>Part</th>
+                  <th>Section</th>
+                  <th>Chapter</th>
+                  <th>Number</th>
+                  <th>Page</th>
+                  <th>Its proof cites...</th>
+                  <th>Cited in proof of...</th>
+               </tr>
+            </tfoot>
+         </table>
+      </main>
+
+      <script src="js/d3.min.js"></script>
+      <script src="js/jquery-3.7.0.min.js"></script>
+      <script src="js/bootstrap-bundle.min.js"></script>
       <script src="js/bundle.js" charset="utf-8"></script>
+      
+      <script>
+         $(document).ready(function() {
+            // Wait for DataTables to initialize and create the info element
+            var checkExist = setInterval(function() {
+               if ($('.dataTables_info').length) {
+                  $('.dataTables_info').attr('aria-live', 'polite');
+                  clearInterval(checkExist);
+               }
+            }, 100); // check every 100ms
+         });
+      </script>
    </body>
 </html>
